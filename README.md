@@ -2,28 +2,28 @@ MagnitudeCMS
 ============
 
 * Mulipe Sites
- * Site
-  * Domain
-  * Domain
-  * Domain
+    * Site
+        * Domain
+        * Domain
+        * Domain
 
 * Page
- * Meta
-  * Title
-  * Robots
-  * Keywords
-  * Description
-  * Canonical
- * URL
- * Content
- * Title (html > head > title)
- * Layout
- * Parts
-  * Different content for showing up in different places
+    * Meta
+        * Title
+        * Robots
+        * Keywords
+        * Description
+        * Canonical
+    * URL
+    * Content
+    * Title (html > head > title)
+    * Layout
+    * Parts
+        * Different content for showing up in different places
 
 * Layout
- * Site has a default layout from a theme
- * Page can pick layout from site theme
+    * Site has a default layout from a theme
+    * Page can pick layout from site theme
 
 What can be on a page?
 ----------------------
@@ -54,7 +54,7 @@ What sort of files are involved?
 Where could these files be stored?
 ----------------------------------
 
-*    Database
-    *    cache to disk on first access so web server may serve files quickly
+* Database
+    * cache to disk on first access so web server may serve files quickly
 * On disk
-    *    what about transfering site to another host? If it is in a CouchDB database it wouold be simpler to replicate...
+    * what about transfering site to another host? If it is in a CouchDB database it wouold be simpler to replicate...
