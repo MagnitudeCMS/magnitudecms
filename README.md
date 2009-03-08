@@ -54,7 +54,7 @@ What sort of files are involved?
 Where could these files be stored?
 ----------------------------------
 
-* Database
- * cache to disk on first access so web server may serve files quickly
+*    Database
+    *    cache to disk on first access so web server may serve files quickly
 * On disk
- * What about transfering site to another host? If it is in a CouchDB database it wouold be simpler to replicate...
+    *    what about transfering site to another host? If it is in a CouchDB database it wouold be simpler to replicate...
