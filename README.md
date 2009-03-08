@@ -6,7 +6,6 @@ MagnitudeCMS
         * Domain
         * Domain
         * Domain
-
 * Page
     * Meta
         * Title
@@ -20,7 +19,6 @@ MagnitudeCMS
     * Layout
     * Parts
         * Different content for showing up in different places
-
 * Layout
     * Site has a default layout from a theme
     * Page can pick layout from site theme
