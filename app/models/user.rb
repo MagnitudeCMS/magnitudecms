@@ -1,17 +1,39 @@
-# This is a default user class used to activate merb-auth.  Feel free to change from a User to 
-# Some other class, or to remove it altogether.  If removed, merb-auth may not work by default.
-#
-# Don't forget that by default the salted_user mixin is used from merb-more
-# You'll need to setup your db as per the salted_user mixin, and you'll need
-# To use :password, and :password_confirmation when creating a user
-#
-# see merb/merb-auth/setup.rb to see how to disable the salted_user mixin
-# 
-# You will need to setup your database and create a user.
-class User
-  include DataMapper::Resource
+# This code is pretty britle
+# you can't save the doc, fail and try again. You need to start again with a new object.
+#   unique_id appears to run only once
+#   salt isn't saved if u save without a password the first time round.
+
+class User < CouchRest::ExtendedDocument
+  # Include the validation module to get access to the validation methods
+  include CouchRest::Validation 
+  # Explicit SaltedUser mixin specificaiton
+  require 'merb-auth-more/mixins/salted_user'
+  include Merb::Authentication::Mixins::SaltedUser
   
-  property :id,     Serial
-  property :login,  String
+  use_database CouchRest.database!(Merb::Config[:couchdb_url] + Merb::Config[:database])
   
+  # Official Schema
+  property :email
+  property :crypted_password
+  property :salt
+  
+  timestamps!
+  unique_id :set_id
+  
+  save_callback :before, :encrypt_password
+  
+  # Validation
+  validates_present :email
+  
+  # Need to specify own authenticate method as merb-auth doesn't know about couchrest
+  def authenticate(email, password)
+    @u = User.get("user:#{email}")
+    @u && @u.authenticated?(password) ? @u : nil
+  end
+  
+  private
+  # now there can only be one user with a given email address
+  def set_id
+    "user:#{self['email']}"
+  end
 end
