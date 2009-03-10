@@ -26,7 +26,7 @@ class User < CouchRest::ExtendedDocument
   validates_present :email
   
   # Need to specify own authenticate method as merb-auth doesn't know about couchrest
-  def authenticate(email, password)
+  def self.authenticate(email, password)
     @u = User.get("user:#{email}")
     @u && @u.authenticated?(password) ? @u : nil
   end
