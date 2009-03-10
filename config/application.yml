@@ -1,0 +1,17 @@
+---
+development: &defaults
+  couchdb_url:  http://localhost:5984/
+  # all sites have their own database and will be prefixed by this word here.
+  # ie magnitudecms_d is the app database so magnitudecms_d_site1 is site1's database
+  database: magnitudecms_d
+test:
+  <<:       *defaults
+  database: magnitude_t
+staging:
+  <<:       *defaults
+  database: magnitude_s
+production:
+  <<:       *defaults
+  database: magnitude_p
+rake:
+  <<: *defaults
