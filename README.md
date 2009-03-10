@@ -98,3 +98,65 @@ Merb or Sinatra?
 I'm still divided on which to use. The thing with Merb is the bundler works great. I've only really used Merb for ruby projects and I hate dealing with gems.
 However auxesis has just pointed me towards a solution for bundling with Sinatra :/ Think I'm going to go Merb as it is nicely structured etc.
 
+
+Installing / Running
+====================
+
+Installing
+----------
+
+    git clone git://github.com/norr/magnitudecms.git
+    thor merb:gem:redeploy
+
+Dependencies
+------------
+
+Since this is a merb application I'm using the bundlr.  
+Only thing you should need to do is redeploy.
+
+    thor merb:gem:redeploy
+
+Note not using Datamapper or any other ORM. Using straight CouchRest. Will write code so merb-auth works
+
+Running
+-------
+
+Modify the config file so it is pointing at your CouchDB server.  
+
+    config/application.yml
+
+The first time the app is run there are no websites or users configured.  
+You need to add a user via bin/merb -i at this stage.  
+Also there is only one type of user, full access.  
+
+    bin/merb -i
+    u = User.new, :email => "u@d.tld"
+    u.password = u.password_confirmation = "tricky_licky"
+    u.save
+    exit
+    bin/merb -p 4050
+    
+You need to hit the site with the domain you want your website to appear as.  
+So if you want your site called _localhost_ then hit it with _localhost_  
+Otherwise create a DNS record or hosts entry.  
+
+Since the site doesn't exist yet you need to create it.  
+Login with the user you created before and you will be presented with two options.  
+1. Create New Site
+2. Add domain to existing site.
+
+Pick one fill in the info required and you are on your way :)
+
+Ta-Da - This how simple CMS should be!  
+
+To Do
+=====
+
+* <del>User model</del>
+* Figure out how to do the above scenario (create site / add domain)
+    * Sort out how a site is stored
+        * Plumbing for creating a site
+    * Figure out best way to have each request be about a site
+    * Model Content
+    * After site is created or added, what next?
+    
