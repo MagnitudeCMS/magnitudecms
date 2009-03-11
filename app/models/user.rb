@@ -3,7 +3,7 @@
 #   unique_id appears to run only once
 #   salt isn't saved if u save without a password the first time round.
 
-class User < CouchRest::ExtendedDocument
+class User < BaseModel
   # Include the validation module to get access to the validation methods
   include CouchRest::Validation 
   # Explicit SaltedUser mixin specificaiton
