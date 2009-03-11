@@ -6,12 +6,12 @@ development: &defaults
   database: magnitudecms_d
 test:
   <<:       *defaults
-  database: magnitude_t
+  database: magnitudecms_t
 staging:
   <<:       *defaults
-  database: magnitude_s
+  database: magnitudecms_s
 production:
   <<:       *defaults
-  database: magnitude_p
+  database: magnitudecms_p
 rake:
   <<: *defaults
