@@ -16,8 +16,11 @@ Here are the bullet points on functionality, pretty basic/simple.
 * Mulipe Sites
     + Site
         - Domain
+    + Site
         - Domain
+    + Site
         - Domain
+        
 * Page
     + Meta
         - Title
@@ -141,11 +144,8 @@ So if you want your site called _localhost_ then hit it with _localhost_
 Otherwise create a DNS record or hosts entry.  
 
 Since the site doesn't exist yet you need to create it.  
-Login with the user you created before and you will be presented with two options.  
-1. Create New Site
-2. Add domain to existing site.
-
-Pick one fill in the info required and you are on your way :)
+Login with the user you created before and you will be presented with a form to create a new site.  
+Submit the form (a new couchdb is created, site is added to main db)
 
 Ta-Da - This how simple CMS should be!  
 

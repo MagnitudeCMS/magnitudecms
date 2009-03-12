@@ -1,5 +1,6 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :sites
   resources :content_items
   
   # Adds the required routes for merb-auth using the password slice

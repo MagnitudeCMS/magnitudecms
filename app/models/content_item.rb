@@ -13,7 +13,6 @@ class ContentItem < BaseModel
   validates_present :slug
   
   private
-  # now there can only be one user with a given email address
   def set_id
     "content_item:#{self['slug']}"
   end
