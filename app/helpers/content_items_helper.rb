@@ -1,5 +1,5 @@
 module Merb
-  module ContentItemHelper
+  module ContentItemsHelper
 
   end
 end # Merb

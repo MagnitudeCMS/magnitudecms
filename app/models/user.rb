@@ -4,8 +4,6 @@
 #   salt isn't saved if u save without a password the first time round.
 
 class User < BaseModel
-  # Include the validation module to get access to the validation methods
-  include CouchRest::Validation 
   # Explicit SaltedUser mixin specificaiton
   require 'merb-auth-more/mixins/salted_user'
   include Merb::Authentication::Mixins::SaltedUser

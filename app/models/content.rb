@@ -1,2 +1,0 @@
-class Content
-end

@@ -1,22 +1,22 @@
 require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
 
 given "a content_item exists" do
-  request(resource(:content_item), :method => "POST", 
+  request(resource(:content_items), :method => "POST", 
     :params => { :content_item => { :id => nil }})
 end
 
-describe "resource(:content_item)" do
+describe "resource(:content_items)" do
   describe "GET" do
     
     before(:each) do
-      @response = request(resource(:content_item))
+      @response = request(resource(:content_items))
     end
     
     it "responds successfully" do
       @response.should be_successful
     end
 
-    it "contains a list of content_item" do
+    it "contains a list of content_items" do
       pending
       @response.should have_xpath("//ul")
     end
@@ -25,10 +25,10 @@ describe "resource(:content_item)" do
   
   describe "GET", :given => "a content_item exists" do
     before(:each) do
-      @response = request(resource(:content_item))
+      @response = request(resource(:content_items))
     end
     
-    it "has a list of content_item" do
+    it "has a list of content_items" do
       pending
       @response.should have_xpath("//ul/li")
     end
@@ -36,11 +36,11 @@ describe "resource(:content_item)" do
   
   describe "a successful POST" do
     before(:each) do
-      @response = request(resource(:content_item), :method => "POST", 
+      @response = request(resource(:content_items), :method => "POST", 
         :params => { :content_item => { :id => nil }})
     end
     
-    it "redirects to resource(:content_item)" do
+    it "redirects to resource(:content_items)" do
     end
     
   end
@@ -53,15 +53,15 @@ describe "resource(@content_item)" do
      end
 
      it "should redirect to the index action" do
-       @response.should redirect_to(resource(:content_item))
+       @response.should redirect_to(resource(:content_items))
      end
 
    end
 end
 
-describe "resource(:content_item, :new)" do
+describe "resource(:content_items, :new)" do
   before(:each) do
-    @response = request(resource(:content_item, :new))
+    @response = request(resource(:content_items, :new))
   end
   
   it "responds successfully" do
