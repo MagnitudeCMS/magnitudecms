@@ -30,7 +30,7 @@ dependency "haml", "~>2.1.0"
 dependency "merb-haml", merb_gems_version
 dependency "chriseppstein-compass", "0.5.0", :require_as => "compass"
 
-dependency "jchris-couchrest", "0.2.2", :require_as => "couchrest"
+dependency "jchris-couchrest", "0.17.0", :require_as => "couchrest"
 
 # testing
 dependency "cucumber"
