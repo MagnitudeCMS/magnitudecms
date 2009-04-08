@@ -15,11 +15,11 @@ Here are the bullet points on functionality, pretty basic/simple.
 
 * Mulipe Sites
     + Site
-        - Domain
+        - Domain, Domain
     + Site
         - Domain
     + Site
-        - Domain
+        - Domain, Domain, Domain, Domain
         
 * Page
     + Meta
@@ -46,10 +46,13 @@ Here are the bullet points on functionality, pretty basic/simple.
     + Page can pick layout from site theme
 * Administration
     + Minimal, Minimal
+    + There is one type of account, admin, that have access to sites
+        - single account, multiple sites
+        - don't want someone changing certain parts of the site, tell them to leave them alone, fire them if they do it again - social issue, not a system issue.
     + On page editing of everything
         - edit box is out of flow of page, update edit box, content on page updates
         - live preview
-        - want content item in a menu on page, drag and drop
+        - want content item in a menu on page, drag and drop (this might be tricky to implement)
         - create new pages by typing new url (ala wiki style)
     + Edit theme in admin area
         - Sass is text
@@ -95,12 +98,6 @@ What License?
 
 Umm good question - guess I need to see what I'm using to build this project, then I'll see which fits best and is compatible :)
 
-Merb or Sinatra?
-----------------
-
-I'm still divided on which to use. The thing with Merb is the bundler works great. I've only really used Merb for ruby projects and I hate dealing with gems.
-However auxesis has just pointed me towards a solution for bundling with Sinatra :/ Think I'm going to go Merb as it is nicely structured etc.
-
 
 Installing / Running
 ====================
@@ -119,7 +116,7 @@ Only thing you should need to do is redeploy.
 
     thor merb:gem:redeploy
 
-Note not using Datamapper or any other ORM. Using straight CouchRest. Will write code so merb-auth works
+Note not using Datamapper or any other ORM. Using straight CouchRest.
 
 Running
 -------
