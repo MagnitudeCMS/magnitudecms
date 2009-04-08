@@ -2,9 +2,11 @@
 # ie ContentItem.use_database CouchRest.database!(@site.couchdb)
 
 class ContentItem < BaseModel
+  # TODO integrating with nav? how to make menu items class="active/current"?
 
   # Official Schema
   property :slug
+  property :url
   property :title
   property :meta, :default => {}  # looks better in Futon..
   # TODO validate parts.key?("main")
@@ -18,6 +20,7 @@ class ContentItem < BaseModel
 
   # Validation
   validates_present :slug
+  validates_present :url
   validates_present :title
 
   def to_html(piece)
@@ -26,6 +29,6 @@ class ContentItem < BaseModel
 
   private
   def set_id
-    "content_item:#{self['slug']}"
+    "content_item:#{self['url']}"
   end
 end

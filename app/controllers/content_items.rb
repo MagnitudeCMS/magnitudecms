@@ -39,4 +39,5 @@ class ContentItems < Application
   def destroy
     render
   end
+  
 end
