@@ -8,10 +8,10 @@ class Site < BaseModel
   # zero shortcuts = ultimate flexibility
   # sub-domain.domain.tld => content_item1
   # domain.tld/page2.html => content_item2
-  # sub-domain.sub-domain.domain.tld.tld/slug/slug/name.html => content_item1
+  # sub-domain.sub-domain.domain.tld/parent/category/name.html => content_item1
   property :domains, :default => []
   # need a default domain so the user doesn't need to keep typing it in all the time
-  # having is separate from domain[0] enables any domain to be default
+  # having it separate from domain[0] enables any domain to be default
   property :default_domain
   property :couchdb
 
