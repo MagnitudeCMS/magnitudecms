@@ -274,3 +274,13 @@ html, body {
   clear: both;
   position: relative;
   height: 20px; }
+
+form .row {
+  overflow: hidden;
+  padding: 0 10px 5px 10px; }
+  form .row .col {
+    float: left; }
+  form .row .label {
+    width: 100px; }
+  form .row input[type=text] {
+    width: 300px; }

@@ -3,6 +3,7 @@ class Sites < Application
   
   # GET /sites
   def index
+    @sites = Site.all
     render
   end
 
@@ -27,8 +28,17 @@ class Sites < Application
   end
 
   # POST /sites
-  def create
-    render
+  def create(site)
+    @site = Site.new(site)
+    @site.default_domain = request.server_name
+    @site.domains = [request.server_name]
+    
+    if @site.save
+      redirect url(:sites)
+    else
+      message[:error] = "Site failed to be created"
+      render :new
+    end
   end
 
   # PUT /sites/:id

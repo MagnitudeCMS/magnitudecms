@@ -1,15 +1,20 @@
+- title "Create New Site"
 #main-content
   %h1
-    Add Domain
-  %p
-    The domain below, is not currently registered to a site.
-  %ul
-    %li
-      = request.server_name
-  %p
-    What would you like to do?
-  %ul
-    %li
-      attach to existing site
-    %li
-      create new site
+    Create New Site
+  = form :action => url(:sites) do
+    .row
+      .col.label
+        %label{ :for => "txt_name" }
+          Name
+      .col
+        %input#txt_name{ :type => "text", :name => "site[name]" }
+    .row
+      .col.label
+        %label{ :for => "txt_couchdb" }
+          CouchDB
+      .col
+        %input#txt_couchdb{ :type => "text", :name => "site[couchdb]", :value => "#{Merb::Config[:couchdb_url]}/mcms_" }
+    .row
+      %input{ :type => "submit", :value => "Create Site" }
+    

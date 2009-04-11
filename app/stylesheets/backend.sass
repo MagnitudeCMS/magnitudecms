@@ -1,5 +1,5 @@
 @import base.sass
-  
+
 #page
   #header
     +grid(16,16)
@@ -18,3 +18,15 @@
     +text-link
   
 +sticky-footer(20px, "#page", "#page_footer", "#footer")
+
+form
+  .row
+    :overflow hidden
+    :padding 0 10px 5px 10px
+    .col
+      :float left
+    .label
+      :width 100px
+    input[type=text]      
+      :width 300px
+    

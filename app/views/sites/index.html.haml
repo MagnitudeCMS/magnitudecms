@@ -1,5 +1,8 @@
-%h1 Sites controller, index action
+%h1 Sites Index
 
-%p
-  Edit this file in
-  %tt app/views/sites/index.html.haml
+- unless @sites.empty?
+  %ul
+    - @sites.each do |site|
+      %li<
+        = site.name
+  
