@@ -12,7 +12,7 @@ Installing / Running
 Installing
 ----------
 
-    git clone git://github.com/norr/magnitudecms.git
+    git clone git://github.com/MagnitudeCMS/magnitudecms.git
     thor merb:gem:redeploy
 
 Dependencies
