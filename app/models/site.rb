@@ -15,15 +15,30 @@ class Site < BaseModel
   property :default_domain
   property :couchdb
 
+  view_by :domain, :map => <<MAP
+function(doc) {
+  if(doc["couchrest-type"] == "Site" && doc.domains) {
+    doc.domains.forEach(function(domain){
+      emit(domain, null);
+    });
+  }
+}
+MAP
   
   timestamps!
   unique_id :set_id
   
   # Validation
-  validates_present :domain
+  validates_present :domains
   validates_present :default_domain
   validates_present :name
   validates_present :couchdb
+
+  def self.get_couchdb(domain)
+    s = self.by_domain :key => domain
+    return s[0].couchdb unless s.empty?
+    return nil
+  end
 
   private
   def set_id
