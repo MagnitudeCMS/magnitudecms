@@ -15,8 +15,15 @@ class ContentItem < BaseModel
   #           "Some content is in here." # the actual content to blat out
   #          }
 
+  view_by :url, :map => <<MAP
+function(doc) {
+  if(doc["couchrest-type"] == "ContentItem" && doc.url && doc.title) {
+    emit(doc.url, doc.title);
+  }
+}
+MAP
+
   timestamps!
-  unique_id :set_id
 
   # Validation
   validates_present :slug
@@ -27,8 +34,4 @@ class ContentItem < BaseModel
     Maruku.new(self["pieces"][piece]).to_html
   end
 
-  private
-  def set_id
-    "content_item:#{self['url']}"
-  end
 end
