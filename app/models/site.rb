@@ -3,7 +3,7 @@ class Site < BaseModel
   
   # Official Schema
   property :name
-  # having multiple domains enables support for content to appear on any domain we want
+  # having multiple domains enables support for content to appear on any domain we want.
   # content_items are id'd by url, domain/slug, might as well be specific.
   # zero shortcuts = ultimate flexibility
   # sub-domain.domain.tld => content_item1
@@ -26,7 +26,6 @@ function(doc) {
 MAP
   
   timestamps!
-  unique_id :set_id
   
   # Validation
   validates_present :domains
@@ -40,8 +39,4 @@ MAP
     return nil
   end
 
-  private
-  def set_id
-    "site:#{self['default_domain']}"
-  end
 end
