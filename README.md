@@ -1,8 +1,8 @@
 MagnitudeCMS
 ============
 
-For information about this project refer to the [MagnitudeCMS](http://magnitudecms.com/ "MagnitudeCMS - CMS running on Ruby via Merb and CouchDB") website.
-or 
+For information about this project refer to the 
+[MagnitudeCMS](http://magnitudecms.com/ "MagnitudeCMS - CMS running on Ruby via Merb and CouchDB") website or 
 [GitHub](http://github.com/MagnitudeCMS/magnitudecms/ "MagnitudeCMS - GitHub Repository")
 
 
