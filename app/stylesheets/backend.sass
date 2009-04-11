@@ -1,0 +1,20 @@
+@import base.sass
+  
+#page
+  #header
+    +grid(16,16)
+
+  #main-content
+    +grid(16, 16)
+  #page_footer
+    +grid(16,16)
+    
+#footer
+  +font-size(10px)
+  :color #888
+  p
+    :margin-bottom 0
+  a
+    +text-link
+  
++sticky-footer(20px, "#page", "#page_footer", "#footer")

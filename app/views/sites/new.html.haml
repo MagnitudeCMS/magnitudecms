@@ -1,5 +1,15 @@
-%h1 Sites controller, new action
-
-%p
-  Edit this file in
-  %tt app/views/sites/new.html.haml
+#main-content
+  %h1
+    Add Domain
+  %p
+    The domain below, is not currently registered to a site.
+  %ul
+    %li
+      = request.server_name
+  %p
+    What would you like to do?
+  %ul
+    %li
+      attach to existing site
+    %li
+      create new site

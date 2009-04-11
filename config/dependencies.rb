@@ -30,6 +30,7 @@ dependency "maruku", "0.5.9"
 dependency "haml", "2.1.0", :source => "http://gems.nicholasorr.com"
 dependency "merb-haml", merb_gems_version
 dependency "chriseppstein-compass", "0.6.1", :require_as => "compass", :source => "http://gems.github.com"
+dependency "chriseppstein-compass-960-plugin", "0.9.4", :require_as => "ninesixty"
 
 # testing
 dependency "cucumber", "0.1.16"

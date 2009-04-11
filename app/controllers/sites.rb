@@ -1,4 +1,5 @@
 class Sites < Application
+  layout :backend
   
   # GET /sites
   def index
