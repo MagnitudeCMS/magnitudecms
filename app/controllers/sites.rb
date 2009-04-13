@@ -1,4 +1,5 @@
 class Sites < Application
+  before :ensure_admin
   layout :backend
   
   # GET /sites
