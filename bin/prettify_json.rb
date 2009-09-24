@@ -28,4 +28,4 @@ if ARGV.first =~ /^_(.*)_$/ and Gem::Version.correct? $1 then
 end
 
 gem 'json_pure', version
-load 'edit_json.rb'
+load 'prettify_json.rb'

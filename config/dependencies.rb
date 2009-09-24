@@ -1,4 +1,5 @@
-merb_gems_version = "1.0.10"
+# Explicit versions keep things sane
+merb_gems_version = "1.0.11"
 
 dependency "merb-core", merb_gems_version
 dependency "merb-action-args", merb_gems_version
@@ -19,20 +20,19 @@ dependency "merb-exceptions", merb_gems_version
 dependency "merb-gen", merb_gems_version
 
 # webserver
-dependency "thin", "1.0.0"
+dependency "thin", "1.2.2"
 
 # datastore
-dependency "jchris-couchrest", "0.23.0", :require_as => "couchrest", :source => "http://gems.github.com"
+dependency "mattetti-couchrest", "0.33", :require_as => "couchrest", :source => "http://gems.github.com"
 
 # view
 dependency "merb_viewfu", "0.3.2"
 dependency "maruku", "0.5.9"
-dependency "haml", "2.1.0", :source => "http://gems.nicholasorr.com"
+dependency "haml", "2.2.0"
 dependency "merb-haml", merb_gems_version
-dependency "chriseppstein-compass", "0.6.1", :require_as => "compass", :source => "http://gems.github.com"
+dependency "chriseppstein-compass", "0.8.7", :require_as => "compass", :source => "http://gems.github.com"
 dependency "chriseppstein-compass-960-plugin", "0.9.4", :require_as => "ninesixty"
 
 # testing
-dependency "cucumber", "0.1.16"
-dependency "auxesis-webrat", "0.4.1", :require_as => "webrat", :source => "http://gems.github.com"
-dependency "david-merb_cucumber", "0.5.1.2", :require_as => "merb_cucumber", :source => "http://gems.github.com"
+dependency "auxesis-webrat", "0.4.1", :require_as => "webrat"
+dependency "cucumber"

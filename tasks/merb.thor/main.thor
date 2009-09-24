@@ -95,7 +95,7 @@ module Merb
         end
       rescue ::Gem::LoadError => e
         self.class.error "Configuration could not be confirmed: #{e.message}"
-        self.class.rollback_trans
+        #self.class.rollback_trans
       end
       self.class.info "Confirmed"
     end
