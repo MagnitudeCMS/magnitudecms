@@ -31,6 +31,8 @@ class User < BaseModel
   
   private
   # now there can only be one user with a given email address
+  # however now that user is not able to change their email address...
+  # well they could ifI write code to handle email change I suppose
   def set_id
     "user:#{self['email']}"
   end

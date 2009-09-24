@@ -1,10 +1,9 @@
 class Sites < Application
-  before :ensure_admin
   layout :backend
   
   # GET /sites
   def index
-    @sites = Site.all
+    @sites = Site.by_admin_and_domain(:key => session.user.id)
     render
   end
 
@@ -33,11 +32,11 @@ class Sites < Application
     @site = Site.new(site)
     @site.default_domain = request.server_name
     @site.domains = [request.server_name]
-    
+    @site.admins = [session.user.id]
+
     if @site.save
       redirect url(:sites)
     else
-      message[:error] = "Site failed to be created"
       render :new
     end
   end

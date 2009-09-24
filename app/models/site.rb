@@ -27,12 +27,24 @@ function(doc) {
 }
 MAP
 
-  view_by :admin, :map => <<MAP
+  view_by :admin_of_domain, :map => <<MAP
 function(doc) {
   if(doc["couchrest-type"] == "Site" && doc.domains && doc.admins) {
     doc.domains.forEach(function(domain){
       doc.admins.forEach(function(admin){
-        emit(admin + "|" + domain, null);
+        emit([admin,domain], null);
+      });
+    });
+  }
+}
+MAP
+
+  view_by :admin_and_domain, :map => <<MAP
+function(doc) {
+  if(doc["couchrest-type"] == "Site" && doc.domains && doc.admins) {
+    doc.domains.forEach(function(domain){
+      doc.admins.forEach(function(admin){
+        emit(admin, domain);
       });
     });
   }
@@ -54,8 +66,8 @@ MAP
     return nil
   end
   
-  def self.is_user_admin?(user,domain)
-    s = self.by_admin :key => "#{user}|#{domain}", :reduce => true
+  def self.is_user_site_admin?(user,domain)
+    s = self.by_admin_and_domain :key => ["#{user}","#{domain}"], :reduce => true
     return true unless s["rows"].empty?
     return false
   end
