@@ -18,21 +18,22 @@ dependency "merb-auth-slice-password", merb_gems_version
 dependency "merb-param-protection", merb_gems_version
 dependency "merb-exceptions", merb_gems_version
 dependency "merb-gen", merb_gems_version
+dependency "thor", "0.9.9"
 
 # webserver
 dependency "thin", "1.2.2"
 
 # datastore
-dependency "mattetti-couchrest", "0.33", :require_as => "couchrest", :source => "http://gems.github.com"
+dependency "couchrest", "0.33"
 
 # view
-dependency "merb_viewfu", "0.3.2"
-dependency "maruku", "0.5.9"
+dependency "merb_viewfu", "0.3.4"
+dependency "maruku", "0.6.0"
 dependency "haml", "2.2.0"
 dependency "merb-haml", merb_gems_version
-dependency "chriseppstein-compass", "0.8.7", :require_as => "compass", :source => "http://gems.github.com"
-dependency "chriseppstein-compass-960-plugin", "0.9.4", :require_as => "ninesixty"
+dependency "chriseppstein-compass", "0.8.16", :require_as => "compass"
+dependency "chriseppstein-compass-960-plugin", "0.9.8", :require_as => "ninesixty"
 
 # testing
 dependency "auxesis-webrat", "0.4.1", :require_as => "webrat"
-dependency "cucumber"
+dependency "cucumber", "0.3.102"
