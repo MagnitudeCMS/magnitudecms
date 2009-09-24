@@ -24,7 +24,7 @@ dependency "thor", "0.9.9"
 dependency "thin", "1.2.2"
 
 # datastore
-dependency "couchrest", "0.33"
+dependency "mattetti-couchrest", "0.34", :require_as => "couchrest"
 
 # view
 dependency "merb_viewfu", "0.3.4"
