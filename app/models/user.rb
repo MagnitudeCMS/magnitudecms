@@ -18,7 +18,7 @@ class User < BaseModel
   timestamps!
   unique_id :set_id
   
-  save_callback :before, :encrypt_password
+  before_save :encrypt_password
   
   # Validation
   validates_present :email
