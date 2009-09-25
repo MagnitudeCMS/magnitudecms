@@ -60,6 +60,8 @@ MAP
   validates_present :couchdb
   validates_present :admins
 
+  before_create :create_database
+  
   def self.get_couchdb(domain)
     s = self.by_domain :key => domain
     return s[0].couchdb unless s.empty?
@@ -70,6 +72,11 @@ MAP
     s = self.by_admin_and_domain :key => ["#{user}","#{domain}"], :reduce => true
     return true unless s["rows"].empty?
     return false
+  end
+  
+  private 
+  def create_database 
+    
   end
 
 end
