@@ -3,7 +3,7 @@ class Sites < Application
   
   # GET /sites
   def index
-    @sites = Site.by_admin_and_domain(:key => session.user.id)
+    @sites = Site.by_admin(:key => session.user.id)
     render
   end
 
@@ -14,6 +14,12 @@ class Sites < Application
 
   # GET /sites/new
   def new
+    @sites = Site.by_admin(:key => session.user.id)
+    render
+  end
+  # GET /sites/new
+  def new_existing
+    @sites = Site.by_admin(:key => session.user.id)
     render
   end
 
@@ -43,11 +49,28 @@ class Sites < Application
 
   # PUT /sites/:id
   def update
+    
     render
   end
 
   # DELETE /sites/:id
   def destroy
     render
+  end
+  
+  # POST /site/:id/:rev/add_domain
+  def add_domain(id, rev, domain)
+    @site = Site.get(id)
+    if @site.rev.eql?(rev)
+      @site.domains << domain
+  
+      if @site.save
+        redirect url(:sites)
+      else
+        redirect url(:sites_new)
+      end
+    else
+      
+    end
   end
 end

@@ -1,3 +1,8 @@
+# Need to split what information lives in the central app couchdb and what lives
+# in the site speicifc couchdb. The point is when replicating a site between 
+# different couchdb servers want to move the logical group of documents.
+# it'll just be useful in the future...
+
 class Site < BaseModel
   use_database CouchRest.database!(Merb::Config[:couchdb_url] + Merb::Config[:database])
   
@@ -17,6 +22,17 @@ class Site < BaseModel
   # need a way to check if logged in person is an actual admin of this particular site
   property :admins, :default => []
   
+  
+  view_by :admin, :map => <<MAP
+function(doc) {
+  if(doc["couchrest-type"] == "Site" && doc.admins) {
+    doc.admins.forEach(function(domain){    
+      emit(domain, 1);
+    });
+  }
+}
+MAP
+
   view_by :domain, :map => <<MAP
 function(doc) {
   if(doc["couchrest-type"] == "Site" && doc.domains) {
@@ -75,8 +91,8 @@ MAP
   end
   
   private 
-  def create_database 
-    
+  def create_database
+    # do this later, create db manually
   end
 
 end

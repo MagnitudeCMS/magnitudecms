@@ -6,7 +6,9 @@ class ContentItems < Application
   end
 
   # GET /content_items/:id
-  def show
+  def show(id)
+    @content = ContentItem.get(id)
+    raise NotFound if @content.nil?
     render
   end
 

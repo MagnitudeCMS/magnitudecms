@@ -4,4 +4,7 @@
   %ul
     - @sites.each do |site|
       %li<
-        = site.name  
+        = site.name
+        %ul
+          - site.domains.each do |domain|
+            %li<= domain         
