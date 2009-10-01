@@ -21,3 +21,5 @@ gems/specifications/*
 gems/environment.rb
 merb_profile_results
 public/stylesheets/*.css
+*temp*
+

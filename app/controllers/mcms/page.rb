@@ -19,7 +19,7 @@ module Mcms
       # Not sure of an effecient way to get info out of couch and available to
       # merb's render method, so am just going to adapt to the way merb works
       raise NotFound if _layout_id.nil?
-      Mcms::Layout.use_database Mcms::Layout.database!(_site_couchdb)
+      Mcms::Layout.use_database CouchRest.database!(_site_couchdb)
       layout = Mcms::Layout.get(_layout_id)
       raise NotFound if layout.nil?
       raise NotFound unless layout.exported_to_disk?

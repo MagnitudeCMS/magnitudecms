@@ -48,4 +48,9 @@ Merb::BootLoader.after_app_loads do
       end # SaltedUser    
     end # Mixins
   end # Merb::Authentication
+  
+  Merb::Cache.setup do
+    register(:layout_sass, Merb::Cache::FileStore, :dir => Merb.root / "app" / "stylesheets" / "temp")
+    register(:layout_haml, Merb::Cache::FileStore, :dir => Merb.root / "app" / "views" / "temp")
+  end
 end

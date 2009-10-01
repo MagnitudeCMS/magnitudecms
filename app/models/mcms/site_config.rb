@@ -13,7 +13,7 @@ module Mcms
     # will fail as it is not a unique id
     # probably a better way to do this...
     def self.get_default_layout_id
-      site_confiig = self.get("thesiteconfig")
+      site_config = self.get("thesiteconfig")
       return nil if site_config.nil? # safety, ought to be throwing errors.
                                      # issue with that is i don't know how it 
                                      # should be done...

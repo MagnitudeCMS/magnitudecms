@@ -19,24 +19,21 @@ module Mcms
     property :haml
     property :sass
     
+    # merb-cache is the conduit for getting the info out of couchdb
+    # and onto the filesystem. sass files are stored in :layout_sass store
+    # in app/stylesheets/temp/ and haml files are stored in app/views/temp 
+    # these dirs can then be added to .gitignorebme 
     def exported_to_disk?
-      # sass files are dumped into app/stylesheets/temp
-      # and a layout_#{id}.sass is written to app
-      # no need to do anything in the haml/html to get the paths correct,
-      # everything is taken care of by replacing /stylesheets/ with the
-      # correct path.
-      return false unless self.write_to_disk(self.haml, path)
-      return false unless self.write_to_disk(self.sass, Merb.root)
+      return false unless Merb::Cache[:layout_sass].write("#{self.id}.sass",
+                                                          self.sass)
+      # in order to include the correct stylesheet path in the haml file
+      # do a string substitution looking for #layout_sass# and replacing that with
+      # /stylesheets/temp/#{layout.id}.css
+      haml = self.haml.sub(/#layout_sass#/, "/stylesheets/temp/#{self.id}.css")
+      return false unless Merb::Cache[:layout_haml].write("#{self.id}.html.haml",
+                                                          haml)
       true
     end
     
-    private    
-    def write_to_disk(content, path)
-    
-      path = File.join(Sinatra::Application.root ,Sinatra::Application.public, "s")
-      # Create the directory if it doesn't exist
-      Dir.mkdir(path) unless File.exists?(path) && File.directory?(path)
-      File.open(File.join(path, "/#{params[:name]}.css"), "w+") {|f| f.write(output)}
-    end
   end
 end # Mcms

@@ -17,6 +17,7 @@ class ContentItem < Mcms::BaseModel
   # pieces => {"main" =>                 # name of the piece
   #           "Some content is in here." # the actual content to blat out
   #          }
+  property :has_layout, :cast_as => :boolean
 
   view_by :url, :map => <<MAP
 function(doc) {
@@ -31,6 +32,7 @@ MAP
   # Validation
   validates_present :url
   validates_present :title
+  validates_present :pieces
 
   def to_html
     self.piece_to_html("main")
@@ -39,5 +41,5 @@ MAP
   def piece_to_html(piece)
     Maruku.new(self["pieces"][piece]).to_html
   end
-
+  
 end
