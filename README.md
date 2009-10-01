@@ -37,9 +37,7 @@ You need to add a user via bin/merb -i at this stage.
 Also there is only one type of user, full access.  
 
     bin/merb -i
-    u = User.new, :email => "u@d.tld"
-    u.password = u.password_confirmation = "tricky_licky"
-    u.save
+    User.create(:email => "a@a.com", :password => "123", :password_confirmation => "123")
     exit
     bin/merb -athin -p4050
     
