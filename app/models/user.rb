@@ -3,7 +3,7 @@
 #   unique_id appears to run only once
 #   salt isn't saved if u save without a password the first time round.
 
-class User < BaseModel
+class User < Mcms::BaseModel
   # Explicit SaltedUser mixin specificaiton
   require 'merb-auth-more/mixins/salted_user'
   include Merb::Authentication::Mixins::SaltedUser

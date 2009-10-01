@@ -1,10 +1,5 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  resources :layouts
-  resources :page_layouts
-  resources :page_layouts
-  resources :themes
-
   
   authenticate do
     resources :sites
@@ -14,7 +9,6 @@ Merb::Router.prepare do
     match("/site/:id/:rev/add_domain")\
       .to(:controller => :sites, :action => :add_domain, :method => :post)\
       .name(:site_add_domain_admin)
-    resources :themes
   end
   
   # Adds the required routes for merb-auth using the password slice
@@ -31,7 +25,7 @@ Merb::Router.prepare do
     else
       ContentItem.use_database CouchRest.database!(site_couchdb)
       params.merge!(:url => "#{request.server_name}#{request.env["PATH_INFO"]}")
-      p params[:url]
+      p "ContentItem key: #{params[:url]}"
       if p = ContentItem.by_url(:key => params[:url], :limit => 1).first then
         layout_id = nil
         if p.has_layout?
@@ -46,11 +40,12 @@ Merb::Router.prepare do
         params.merge!(:controller => "mcms/page",
                       :action => :show,
                       :content_id => p.id,
-                      :layout_id => layout_id)
+                      :layout_id => layout_id,
+                      :site_couchdb => site_couchdb)
       else
         false
       end
     end
   end
-
+  
 end

@@ -3,7 +3,7 @@
 # different couchdb servers want to move the logical group of documents.
 # it'll just be useful in the future...
 
-class Site < BaseModel
+class Site < Mcms::BaseModel
   use_database CouchRest.database!(Merb::Config[:couchdb_url] + Merb::Config[:database])
   
   # Official Schema

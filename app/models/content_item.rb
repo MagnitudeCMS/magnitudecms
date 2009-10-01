@@ -3,7 +3,7 @@
 # ie ContentItem.use_database CouchRest.database!(@site.couchdb)
 
 
-class ContentItem < BaseModel
+class ContentItem < Mcms::BaseModel
   # TODO integrating with nav? how to make menu items class="active/current"?
 
   # Official Schema
