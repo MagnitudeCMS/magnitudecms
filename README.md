@@ -33,13 +33,15 @@ Modify the config file so it is pointing at your CouchDB server.
     config/application.yml
 
 The first time the app is run there are no websites or users configured.  
-You need to add a user via bin/merb -i at this stage.  
 Also there is only one type of user, full access.  
-
-    bin/merb -i
-    User.create(:email => "a@a.com", :password => "123", :password_confirmation => "123")
-    exit
+For now use the rake task gogogooo
+    
+    bin/rake gogogooo
     bin/merb -athin -p4050
+    edit your hosts file: ip site1
+    open browser http://site1:4050
+    ctrl+f5 (refresh) - race condition on generating the css on the first hit
+    you should now have bright pink "home page" text on the screen
     
 You need to hit the site with the domain you want your website to appear as.  
 So if you want your site called _localhost_ then hit it with _localhost_  

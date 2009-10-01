@@ -25,7 +25,7 @@ gem "merb-gen", merb_gems_version
 gem "thin", "1.2.2"
  
 # orm
-gem "couchrest", "0.34.02"
+gem "mattetti-couchrest", "0.34", :require_as => "couchrest"
  
 # view
 gem "merb_viewfu", "0.3.4"

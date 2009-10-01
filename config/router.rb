@@ -27,20 +27,20 @@ Merb::Router.prepare do
       params.merge!(:url => "#{request.server_name}#{request.env["PATH_INFO"]}")
       p "ContentItem key: #{params[:url]}"
       if p = ContentItem.by_url(:key => params[:url], :limit => 1).first then
-        p "layout_id is nil"
+        # p "layout_id is nil"
         layout_id = nil
         if p.has_layout?
-          p "content_item has a layout"
+          # p "content_item has a layout"
           # this content_item a specific layout
           layout_id = p.layout_id
         else
-          p "content_item does not have a layout"
+          # p "content_item does not have a layout"
           # this content_item uses the site default layout
           # first tell site config which db to use
           Mcms::SiteConfig.use_database CouchRest.database!(site_couchdb)
           layout_id = Mcms::SiteConfig.get_default_layout_id
         end
-        p "layout_id is now #{layout_id}"
+        # p "layout_id is now #{layout_id}"
         params.merge!(:controller => "mcms/page",
                       :action => :show,
                       :_content_id => p.id,

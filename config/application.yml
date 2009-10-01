@@ -1,17 +1,12 @@
 ---
 development: &defaults
-  couchdb_url:  http://127.0.0.1:5984/
-  # all sites have their own database and will be prefixed by this word here.
-  # ie magnitudecms_d is the app database so magnitudecms_d_site1 is site1's database
-  database: mcms_d
+  couchdb_url:  http://127.0.0.1:5984
+  database: mcms
 test:
   <<:       *defaults
-  database: magnitudecms_t
 staging:
   <<:       *defaults
-  database: magnitudecms_s
 production:
   <<:       *defaults
-  database: magnitudecms_p
 rake:
   <<: *defaults

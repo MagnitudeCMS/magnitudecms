@@ -4,7 +4,7 @@
 # it'll just be useful in the future...
 
 class Site < Mcms::BaseModel
-  use_database CouchRest.database!(Merb::Config[:couchdb_url] + Merb::Config[:database])
+  use_database CouchRest.database!(Merb::Config[:couchdb_url] + "/" + Merb::Config[:database])
   
   # Official Schema
   property :name
