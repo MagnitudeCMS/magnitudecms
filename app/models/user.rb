@@ -3,7 +3,7 @@
 #   unique_id appears to run only once
 #   salt isn't saved if u save without a password the first time round.
 
-class User < BaseModel
+class User < Mcms::BaseModel
   # Explicit SaltedUser mixin specificaiton
   require 'merb-auth-more/mixins/salted_user'
   include Merb::Authentication::Mixins::SaltedUser
@@ -18,7 +18,7 @@ class User < BaseModel
   timestamps!
   unique_id :set_id
   
-  save_callback :before, :encrypt_password
+  before_save :encrypt_password
   
   # Validation
   validates_present :email
@@ -31,6 +31,8 @@ class User < BaseModel
   
   private
   # now there can only be one user with a given email address
+  # however now that user is not able to change their email address...
+  # well they could ifI write code to handle email change I suppose
   def set_id
     "user:#{self['email']}"
   end

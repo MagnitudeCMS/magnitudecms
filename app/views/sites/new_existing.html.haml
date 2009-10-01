@@ -1,0 +1,21 @@
+- title "Create New Site - Add to Existing Site"
+#main-content
+  %h1 Adding Domain to Existing Site
+  %table
+    %thead
+      %tr
+        %th Site Name
+        %th Current Domains
+        %th Add?
+    %tbody
+      - @sites.each do |site|
+        %tr
+          %td= site.name
+          %td
+            %ul
+              - site.domains.each do |domain|
+                %li<= domain
+          %td
+            = form :action => url(:site_add_domain_admin, site.id, site.rev) do
+              %input{ :type => "hidden", :name => "domain", :value => request.server_name}
+              = submit "Yes!"
