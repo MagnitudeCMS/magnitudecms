@@ -22,20 +22,23 @@ gem "merb-exceptions", merb_gems_version
 gem "merb-gen", merb_gems_version
 
 # webserver
-gem "thin", "1.0.0"
-
-# datastore
-gem "jchris-couchrest", "0.23.0", :require_as => "couchrest"
-
+gem "thin", "1.2.2"
+ 
+# orm
+gem "couchrest", "0.34.02"
+ 
 # view
-gem "merb_viewfu", "0.3.2"
-gem "maruku", "0.5.9"
-gem "haml", "2.1.0", :source => "http://gems.nicholasorr.com"
+gem "merb_viewfu", "0.3.4"
+gem "maruku", "0.6.0"
+gem "haml", "2.2.0"
 gem "merb-haml", merb_gems_version
-gem "chriseppstein-compass", "0.6.1", :require_as => "compass"
-gem "chriseppstein-compass-960-plugin", "0.9.4", :require_as => "ninesixty"
-
+gem "chriseppstein-compass", "0.8.16", :require_as => "compass"
+gem "chriseppstein-compass-960-plugin", "0.9.8", :require_as => "ninesixty"
+ 
 # testing
-gem "cucumber", "0.1.16"
 gem "auxesis-webrat", "0.4.1", :require_as => "webrat"
-gem "david-merb_cucumber", "0.5.1.2", :require_as => "merb_cucumber"
+gem "cucumber", "0.3.11"
+gem "chronic", "0.2.3"
+gem "ParseTree", "3.0.3", :require_as => 'parse_tree'
+gem "rspec", "1.2.8", :require_as => 'spec'
+gem "david-merb_cucumber", :require_as => "merb_cucumber"
