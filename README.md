@@ -52,3 +52,11 @@ Login with the user you created before and you will be presented with a form to 
 Submit the form (a new couchdb is created, site is added to main db)
 
 Ta-Da - This how simple CMS should be!  
+
+Thanks / Kudos
+==============
+
+<dl>
+<dt>Jacques Crocker</dt>
+<dd>Updating Merb to 1.1 and sorting out the bundler</dd>
+</dl>
