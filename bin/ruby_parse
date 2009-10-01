@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require File.join(File.dirname(__FILE__), "../gems/environment")
+load File.join(File.dirname(__FILE__), "../gems/gems/ruby_parser-2.0.4/bin/ruby_parse")

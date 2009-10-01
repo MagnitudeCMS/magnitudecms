@@ -1,7 +1,5 @@
 # Go to http://wiki.merbivore.com/pages/init-rb
  
-require "config/dependencies.rb"
- 
 #use_orm :none
 use_test :rspec
 use_template_engine :haml
