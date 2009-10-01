@@ -11,17 +11,17 @@ Installing / Running
 
 Installing
 ----------
-
+    
     git clone git://github.com/MagnitudeCMS/magnitudecms.git
-    thor merb:gem:redeploy
+    gem install bundler
+    gem bundle --cached
 
 Dependencies
 ------------
 
-Since this is a merb application I'm using the bundlr.  
-Only thing you should need to do is redeploy.
+Since this is a merb application I'm using the bundler. To rebundle on your system (including native gems), just run:
 
-    thor merb:gem:redeploy
+    gem bundle --cached
 
 Note not using Datamapper or any other ORM. Using straight CouchRest.
 
