@@ -9,24 +9,25 @@ module Mcms
   # content_item is passed to the show method of Mcms::Page.
   # Show then loads the content_item by id and loads the layout by id
   # (when a page layout is assigned to a site it is copied into the site 
-  # database.
-  # Layouts are documents, as such they may be sync'd. Probably if a layout 
-  # is to be modified, copy it and give it a new name/id)
+  # database. The idea was to use couchdb replication funcitonallity however
+  # replication filtering is not in couchdb yet, for now it will be handled by
+  # the layout model/controller)
   class Page < Application
   
     def show(_content_id, _layout_id, _site_couchdb)
       # ensure there is a layout_id and have the layout export itself to disk
       # Not sure of an effecient way to get info out of couch and available to
       # merb's render method, so am just going to adapt to the way merb works
+      # which is looking for files in certain places on the disk
       raise NotFound if _layout_id.nil?
-      Mcms::Layout.use_database CouchRest.database!(_site_couchdb)
+      Mcms::Layout.use_database CouchRest.database(_site_couchdb)
       layout = Mcms::Layout.get(_layout_id)
       raise NotFound if layout.nil?
       raise NotFound unless layout.exported_to_disk?
       # even though this method ought to be invoked from the router, there is 
       # the chance it might be invoked directly so set the db again and make
       # sure a content_item doc is retrieved before proceeding
-      ContentItem.use_database CouchRest.database!(_site_couchdb)
+      ContentItem.use_database CouchRest.database(_site_couchdb)
       @content_item = ContentItem.get(_content_id)
       raise NotFound if @content_item.nil?
       
