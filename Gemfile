@@ -25,6 +25,7 @@ gem "merb-gen", merb_gems_version
 gem "thin", "1.2.2"
  
 # orm
+gem "json_pure", "1.1.9", :require_as => "json"
 gem "mattetti-couchrest", "0.34", :require_as => "couchrest"
  
 # view
