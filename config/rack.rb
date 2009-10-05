@@ -8,4 +8,14 @@ end
 use Merb::Rack::Static, Merb.dir_for(:public)
 
 # this is our main merb application
-run Merb::Rack::Application.new
+merb = Merb::Rack::Application.new
+
+hapong = lambda do |env|
+  if env["REQUEST_METHOD"] == "OPTIONS" && env["REQUEST_URI"] == "/"
+    [200, {}, "PONG!\n"]
+  else
+    [404, {}, "No PONG! here, move along"]
+  end
+end
+ 
+run Rack::Cascade.new([hapong, merb])
