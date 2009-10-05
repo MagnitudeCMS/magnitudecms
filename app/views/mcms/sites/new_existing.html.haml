@@ -16,6 +16,6 @@
               - site.domains.each do |domain|
                 %li<= domain
           %td
-            = form :action => url(:site_add_domain_admin, site.id, site.rev) do
+            = form :action => url(:"add_domain_admin_mcms/site", site.id, site.rev) do
               %input{ :type => "hidden", :name => "domain", :value => request.server_name}
               = submit "Yes!"

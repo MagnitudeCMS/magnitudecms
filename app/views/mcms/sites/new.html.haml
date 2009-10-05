@@ -5,7 +5,7 @@
       %p= e
       
   %h1 Create New Site
-  = form :action => url(:sites) do
+  = form :action => url(:"mcms/sites") do
     .row
       .col.label
         %label{ :for => "txt_name" } Name
@@ -15,10 +15,10 @@
       .col.label
         %label{ :for => "txt_couchdb" } CouchDB
       .col
-        %input#txt_couchdb{ :type => "text", :name => "site[couchdb]", :value => "#{Merb::Config[:couchdb_url]}#{Merb::Config[:database]}_" }
+        %input#txt_couchdb{ :type => "text", :name => "site[couchdb]", :value => "#{Merb::Config[:couchdb_url]}/#{Merb::Config[:database]}_" }
     .row
       %input{ :type => "submit", :value => "Create Site" }
 
   - unless @sites.empty?
-    %h1= link_to("Add to existing site?", url(:sites_new_existing))
+    %h1= link_to("Add to existing site?", url(:"new_existing_mcms/site"))
       

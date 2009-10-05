@@ -8,7 +8,7 @@ class User < Mcms::BaseModel
   require 'merb-auth-more/mixins/salted_user'
   include Merb::Authentication::Mixins::SaltedUser
   
-  use_database CouchRest.database!(Merb::Config[:couchdb_url] + "/" + Merb::Config[:database])
+  use_database CouchRest.database(Merb::Config[:couchdb_url] + "/" + Merb::Config[:database])
   
   # Official Schema
   property :email

@@ -1,0 +1,24 @@
+- title "Create 1st User for new install"
+#main-content
+  %h1 New Install
+  
+  %p No users currently exist, please create one below
+
+  = form :action => url(:init_mcms) do
+    .row
+      .col.label
+        %label{ :for => "email" } Email
+      .col
+        %input#email{ :type => "text", :name => "user[email]" }
+    .row
+      .col.label
+        %label{ :for => "password" } Password
+      .col
+        %input#password{ :type => "password", :name => "user[password]"}
+    .row
+      .col.label
+        %label{ :for => "password" } Confirm
+      .col
+        %input#password{ :type => "password", :name => "user[password_confirmation]"}
+    .row
+      %input{ :type => "submit", :value => "Initialise" }
