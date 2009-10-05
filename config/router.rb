@@ -20,6 +20,7 @@ Merb::Router.prepare do
   
   authenticate do
     resources :"mcms/sites"
+    resources :"mcms/content_items"
     match("/mcms/sites/new/existing")\
       .to(:controller => "mcms/sites",
           :action     => :new_existing,
@@ -30,6 +31,13 @@ Merb::Router.prepare do
           :action     => :add_domain,
           :method     => :post)\
       .name(:"add_domain_admin_mcms/site")
+      
+    match("/mcms/backend")\
+      .to(:controller => "mcms/backend",
+          :action     => :index,
+          :method     => :get)\
+      .name(:"backend_mcms/site")
+      
   end
   
   # Adds the required routes for merb-auth using the password slice
@@ -53,7 +61,7 @@ Merb::Router.prepare do
         # site doesn't exist, create one
         redirect url(:"new_mcms/site")
       else
-        Mcms::ContentItem.use_database CouchRest.database!(site_couchdb)
+        Mcms::ContentItem.use_database CouchRest.database(site_couchdb)
         params.merge!(:url => "#{request.server_name}#{request.env["PATH_INFO"]}")
         p "ContentItem key: #{params[:url]}"
         if p = Mcms::ContentItem.by_url(:key => params[:url], :limit => 1).first then
@@ -67,7 +75,7 @@ Merb::Router.prepare do
             # p "content_item does not have a layout"
             # this content_item uses the site default layout
             # first tell site config which db to use
-            Mcms::SiteConfig.use_database CouchRest.database!(site_couchdb)
+            Mcms::SiteConfig.use_database CouchRest.database(site_couchdb)
             layout_id = Mcms::SiteConfig.get_default_layout_id
           end
           # p "layout_id is now #{layout_id}"

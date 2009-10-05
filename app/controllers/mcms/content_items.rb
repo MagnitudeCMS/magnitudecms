@@ -1,15 +1,17 @@
 module Mcms
   class ContentItems < Application
+    before :set_site_couchdb
+    layout :backend
     
     # GET /content_items
     def index
+      Mcms::ContentItem.use_database CouchRest.database(@site_couchdb)
+      @content_items = Mcms::ContentItem.by_url
       render
     end
   
     # GET /content_items/:id
     def show(id)
-      @content = ContentItem.get(id)
-      raise NotFound if @content.nil?
       render
     end
   

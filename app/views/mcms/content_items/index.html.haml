@@ -1,5 +1,20 @@
-%h1 ContentItems controller, index action
-
-%p
-  Edit this file in
-  %tt app/views/content_items/index.html.haml
+#main-content
+  %h1 Site Content
+  %ul
+    %li= link_to("Add", url(:"new_mcms/content_item"))
+  - unless @content_items.empty?
+    %table
+      %thead
+        %tr
+          %th Title
+          %th URL
+          %th Action
+      %tbody
+        - @content_items.each do |item|
+          %tr
+            %td= item.title
+            %td= item.url
+            %td= link_to("edit", url(:"edit_mcms/content_item", :id => item.id))
+  - else
+    %p no content added to site yet
+  
