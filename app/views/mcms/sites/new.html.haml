@@ -15,7 +15,7 @@
       .col.label
         %label{ :for => "txt_couchdb" } CouchDB
       .col
-        %input#txt_couchdb{ :type => "text", :name => "site[couchdb]", :value => "#{Merb::Config[:couchdb_url]}/#{Merb::Config[:database]}_" }
+        %input#txt_couchdb{ :type => "text", :name => "site[couchdb]", :value => "#{Merb::Config[:couch_host]}/#{Merb::Config[:couch_db]}_" }
     .row
       %input{ :type => "submit", :value => "Create Site" }
 

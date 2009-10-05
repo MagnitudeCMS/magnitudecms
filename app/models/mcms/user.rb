@@ -9,7 +9,8 @@ module Mcms
     require 'merb-auth-more/mixins/salted_user'
     include Merb::Authentication::Mixins::SaltedUser
     
-    use_database CouchRest.database(Merb::Config[:couchdb_url] + "/" + Merb::Config[:database])
+    use_database CouchRest.database(Merb::Config[:couch_host] + "/"\
+                   + Merb::Config[:couch_db])
     
     # Official Schema
     property :email

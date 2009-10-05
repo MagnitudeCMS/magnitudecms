@@ -8,4 +8,8 @@ class Application < Merb::Controller
     @site_couchdb = Mcms::Site.get_couchdb(request.server_name)
   end
   
+  def set_mcms_couchdb
+    @mcms_couchdb = Merb::Config[:couch_host] + "/" + Merb::Config[:couch_db]
+  end
+  
 end

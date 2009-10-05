@@ -4,8 +4,8 @@ Merb::Router.prepare do
   match("/mcms/new_install").defer_to do |request, params|
     # make sure the default database doesn't exist. not allowed to get to this
     # route if it does
-    unless CouchRest::Server.new(Merb::Config[:couchdb_url])\
-            .databases.include?(Merb::Config[:database])
+    unless CouchRest::Server.new(Merb::Config[:couch_host])\
+            .databases.include?(Merb::Config[:couch_db])
       params.merge!(:controller => "mcms/misc", :action => :new_install)
     else
       raise Merb::Controller::NotFound
@@ -53,8 +53,8 @@ Merb::Router.prepare do
     # then do everything else from the browser.
     # not using database! as it creates a db if it is doesn't exist. want to
     # redirect to a "create" first user page if db doesn't exist.
-    if CouchRest::Server.new(Merb::Config[:couchdb_url])\
-            .databases.include?(Merb::Config[:database])
+    if CouchRest::Server.new(Merb::Config[:couch_host])\
+            .databases.include?(Merb::Config[:couch_db])
       site_couchdb = Mcms::Site.get_couchdb(request.server_name)
       
       if site_couchdb.nil?
