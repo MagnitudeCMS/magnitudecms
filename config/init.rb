@@ -4,6 +4,9 @@
 use_test :rspec
 use_template_engine :haml
 
+Merb::Plugins.config[:sass][:always_check] = true
+Merb::Plugins.config[:sass][:always_update] = true
+
 Merb::Config.use do |c|
   c[:use_mutex] = false
   c[:session_store] = "cookie"  # can also be 'memory', 'memcache', 'container', 'datamapper
