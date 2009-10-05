@@ -53,10 +53,10 @@ Merb::Router.prepare do
         # site doesn't exist, create one
         redirect url(:"new_mcms/site")
       else
-        ContentItem.use_database CouchRest.database!(site_couchdb)
+        Mcms::ContentItem.use_database CouchRest.database!(site_couchdb)
         params.merge!(:url => "#{request.server_name}#{request.env["PATH_INFO"]}")
         p "ContentItem key: #{params[:url]}"
-        if p = ContentItem.by_url(:key => params[:url], :limit => 1).first then
+        if p = Mcms::ContentItem.by_url(:key => params[:url], :limit => 1).first then
           # p "layout_id is nil"
           layout_id = nil
           if p.has_layout?
