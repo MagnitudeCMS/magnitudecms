@@ -72,9 +72,9 @@ module Mcms
         @site.domains << domain
     
         if @site.save
-          redirect url(:sites)
+          redirect("/")
         else
-          redirect url(:sites_new)
+          render :new
         end
       else
         
