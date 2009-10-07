@@ -1,0 +1,14 @@
+== 0.1.2
+
+* Major enhancements
+
+  * added layout editing via bespin editor from the browser
+  
+* Minor enhancements 
+  
+  * 
+
+  
+---
+
+You can see the full commit history on GitHub: http://github.com/MagnitudeCMS/magnitudecms
