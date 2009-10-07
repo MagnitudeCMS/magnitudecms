@@ -24,8 +24,10 @@ Merb::Config.use do |c|
   config_file = File.join(Merb.root, "config", "application.yml")
   if File.exists?(config_file)
     config = YAML.load(File.read(config_file))[Merb.environment]
-    config.keys.each do |key|
-      c[key.to_sym] = config[key]
+    unless config.nil?
+      config.keys.each do |key|
+        c[key.to_sym] = config[key]
+      end
     end
   end
 end
