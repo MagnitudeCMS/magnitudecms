@@ -19,7 +19,7 @@
       %form#_form{ :method => "post", :action => "/mcms/layouts/#{@layout.id}" }
         %input#rev{ :type => "hidden", :name => "layout[rev]", :value => @layout.rev }
         %input{ :type => "hidden", :name => "_method", :value => "PUT" }
-        %input{ :type => "submit", :value => "save" }
+        %input#btn{ :type => "submit", :value => "save" }
         %a#_haml{ :href => "#haml" } haml
         %a#_sass{ :href => "#sass" } sass
         %textarea#haml{ :name => "layout[haml]", :style => "display: none;" }= @layout.haml

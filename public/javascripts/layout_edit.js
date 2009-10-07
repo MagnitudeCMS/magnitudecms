@@ -16,7 +16,10 @@ function init(){
   Ext.fly("_sass").on("click" , function() {setEditorContent("sass", true);});
   Ext.fly("_form").on("submit", function(e,t) {
     e.stopEvent();
-    saveLayout();
+    var btn = Ext.getDom("btn");
+    btn.disabled = true;
+    btn.value = "saving...";
+    saveLayout(btn);
   });
   setEditorContent("haml", false);
 }
@@ -34,7 +37,7 @@ function setFieldContent(what) {
     Ext.fly(what).update(_editor.getContent());
   }
 }
-function saveLayout() {
+function saveLayout(btn) {
   setFieldContent(_active);
   Ext.Ajax.request({
     url: Ext.fly("_form").getAttribute("action")
@@ -43,7 +46,9 @@ function saveLayout() {
     ,success: function(response, opts) {
       var obj = Ext.decode(response.responseText);
       console.dir(obj);
-      Ext.getDom("rev").value=obj.rev;
+      Ext.getDom("rev").value = obj.rev;
+      btn.disabled = false;
+      btn.value = "save";
     }
     ,failure: function(response, opts) {
       console.log("server-side failure with status code " + response.status);
