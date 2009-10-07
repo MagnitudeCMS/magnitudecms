@@ -3,7 +3,7 @@ var _active;
 
 function init(){
   _editor = new bespin.editor.Component("editor", {
-    language: "js"
+    language: "ruby"
     ,loadfromdiv: true
     ,set: {
       strictlines: "on"
