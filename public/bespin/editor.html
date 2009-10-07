@@ -1,0 +1,341 @@
+<!--
+    ***** BEGIN LICENSE BLOCK *****
+    Version: MPL 1.1
+
+    The contents of this file are subject to the Mozilla Public License Version
+    1.1 (the "License"); you may not use this file except in compliance with
+    the License. You may obtain a copy of the License at
+    http://www.mozilla.org/MPL/
+
+    Software distributed under the License is distributed on an "AS IS" basis,
+    WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+    for the specific language governing rights and limitations under the
+    License.
+
+    The Original Code is Bespin.
+
+    The Initial Developer of the Original Code is Mozilla.
+    Portions created by the Initial Developer are Copyright (C) 2009
+    the Initial Developer. All Rights Reserved.
+
+    Contributor(s):
+        Bespin Team (bespin@mozilla.com)
+
+    ***** END LICENSE BLOCK *****
+-->
+<!doctype html>
+<html>
+<head>
+    <title>Bespin &raquo; Your Community Editor</title>
+    <link type="text/css" rel="stylesheet" href="css/editor.css">
+
+    <link type="text/css" rel="thstylesheet" href="css/editor_th.css">
+    <link type="text/css" rel="thstylesheet" href="css/quickopen_th.css">
+    <link type="text/css" rel="thstylesheet" href="css/filesearch_th.css">
+
+    <!-- begin Th -->
+    
+    <script type="text/javascript" src="js/th.compressed.js"></script>
+    
+    <script type="text/javascript">
+    th.global_resources.load("/th/");
+    </script>
+    <!-- end Th -->
+
+    <!-- begin script tags -->
+    <script type="text/javascript">
+        var djConfig = { parseOnLoad: false, isDebug: false, debugAtAllCosts: false };
+    </script>
+    <script type="text/javascript" src="js/dojo/dojo.js.uncompressed.js"></script>
+
+    <script type='text/javascript' src='js/dojo/regexp.js'></script>
+    <script type='text/javascript' src='js/dojo/cookie.js'></script>
+    <script type='text/javascript' src='js/dojo/AdapterRegistry.js'></script>
+    <script type='text/javascript' src='js/dojo/fx/easing.js'></script>
+    <script type='text/javascript' src='js/dijit/_base/place.js'></script>
+
+    <!--
+    <script type='text/javascript' src='js/jsparse/jsdefs.js'></script>
+    <script type='text/javascript' src='js/jsparse/jsparse.js'></script>
+    <script type='text/javascript' src='js/jsparse/fulljslint.js'></script>
+    -->
+
+    <script type='text/javascript' src='js/bespin/util/util.js'></script>
+    <script type='text/javascript' src='js/bespin/util/canvas.js'></script>
+    <script type='text/javascript' src='js/bespin/util/keys.js'></script>
+    <script type='text/javascript' src='js/bespin/util/navigate.js'></script>
+    <script type='text/javascript' src='js/bespin/util/path.js'></script>
+    <script type='text/javascript' src='js/bespin/util/tokenobject.js'></script>
+    <script type='text/javascript' src='js/bespin/util/mousewheelevent.js'></script>
+    <script type='text/javascript' src='js/bespin/util/urlbar.js'></script>
+    <script type='text/javascript' src='js/bespin/util/webpieces.js'></script>
+
+    <script type='text/javascript' src='js/bespin/bespin.js'></script>
+    <script type='text/javascript' src='js/bespin/command.js'></script>
+    <script type='text/javascript' src='js/bespin/events.js'></script>
+
+    <script type='text/javascript' src='js/bespin/client/settings.js'></script>
+    <script type='text/javascript' src='js/bespin/client/filesystem.js'></script>
+    <script type='text/javascript' src='js/bespin/client/status.js'></script>
+    <script type='text/javascript' src='js/bespin/client/server.js'></script>
+    <script type='text/javascript' src='js/bespin/client/session.js'></script>
+
+    <script type='text/javascript' src='js/bespin/worker/worker.js'></script>
+
+    <script type='text/javascript' src='js/bespin/editor/actions.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/clipboard.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/cursor.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/editor.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/events.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/model.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/toolbar.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/history.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/quickopen.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/filesearch.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/formatter.js'></script>
+    <script type='text/javascript' src='js/bespin/editor/codecompletion.js'></script>
+
+    <script type='text/javascript' src='js/bespin/themes/default.js'></script>
+    <script type='text/javascript' src='js/bespin/syntax/base.js'></script>
+    <script type='text/javascript' src='js/bespin/syntax/simple/_base.js'></script>
+    <script type='text/javascript' src='js/bespin/parser/parser.js'></script>
+
+    <script type='text/javascript' src='js/bespin/cmd/cmd.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/config.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/editor.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/file.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/other.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/project.js'></script>
+    <!--
+    <script type='text/javascript' src='js/bespin/cmd/debug.js'></script>
+    -->
+
+    <script type='text/javascript' src='js/bespin/preview.js'></script>
+    <script type='text/javascript' src='js/bespin/wizard.js'></script>
+    <script type='text/javascript' src='js/bespin/social.js'></script>
+    <script type='text/javascript' src='js/bespin/vcs.js'></script>
+    <script type='text/javascript' src='js/bespin/deploy.js'></script>
+    <script type='text/javascript' src='js/bespin/jetpack.js'></script>
+
+    <script type='text/javascript' src='js/bespin/mobwrite/core.js'></script>
+    <script type='text/javascript' src='js/bespin/mobwrite/diff.js'></script>
+    <script type='text/javascript' src='js/bespin/mobwrite/integrate.js'></script>
+
+    <script type='text/javascript' src='js/bespin/client/pubsub.js'></script>
+    <script type='text/javascript' src='js/bespin/plugins/loader.js'></script>
+    <script type="text/javascript" src="js/bespin/plugins.js"></script>
+
+    <script type='text/javascript' src='js/bespin/page/editor/init.js'></script>
+
+    <script type='text/javascript' src='js/bespin/test.js'></script>
+    <script type='text/javascript' src='js/bespin/testTest.js'></script>
+    <script type='text/javascript' src='js/bespin/wizardTest.js'></script>
+    <script type='text/javascript' src='js/bespin/socialTest.js'></script>
+    <script type='text/javascript' src='js/bespin/cmd/fileTest.js'></script>
+    <script type='text/javascript' src='js/bespin/plugins/loaderTest.js'></script>
+
+    <!--
+    <script type='text/javascript' src='js/bespin/bootstrap_worker.js'></script>
+    -->
+
+    <!--
+    <scr ipt type="text/javascript">
+        dojo.require("bespin.page.editor.dependencies");
+    </scr ipt>
+    -->
+
+    <!-- end script tags -->
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <a href="index.html" title="Go Home" id="home"><img id="logo" src="images/logo.png" alt="Bespin" border="0"></a>
+
+            <div id="status" title="Current Project : Current File"><canvas id="projectStatus"></canvas></div>
+            <div id="toolbar">
+                <img class="icon" id="toolbar_commandline" src="images/icn_command.png" alt="Show Command Line (Cmd-J)" title="Show Command Line (Cmd-J)">
+                <img class="icon" id="toolbar_filepopup" src="images/icn_filepopup.png" alt="Show Files (Cmd-O)" title="Show Files (Cmd-O)" style="padding-right: 20px">
+                <img class="icon" id="toolbar_save" src="images/icn_save.png" alt="Save (Cmd-S)" title="Save (Cmd-S)">
+                <!-- <img class="icon" id="toolbar_close" src="images/icn_close.png" alt="Close" title="Close" style="padding-right: 20px">
+                <img class="icon" id="toolbar_undo" src="images/icn_undo.png" alt="Undo" title="Undo">
+                <img class="icon" id="toolbar_redo" src="images/icn_redo.png" alt="Redo" title="Redo" style="padding-right: 20px"> -->
+                <img class="icon" id="toolbar_preview" src="images/icn_preview.png" alt="View in Browser (Cmd-B)" title="View in Browser" style="padding-right: 20px">
+                <img class="icon" id="toolbar_fontsize" src="images/icn_fontsize.png" alt="Font Size" title="Font Size">            
+            </div>
+        </div>
+
+        <div style="float: right;">
+            <img id="toolbar_collaboration" src="images/icn_collab_dim.png" alt="Collaboration">
+            <div id="collab_line"></div>
+            <div id="version"></div>
+        </div>
+    </div>
+
+    <div id="editor"></div>
+    <div id="preview" style="display: none"></div>
+    <div id="footer" class="footer" style="display:none">
+        <table class="commandline" cellpadding="0">
+            <tr>
+                <td class="prompt"><img id="promptimg" src="images/icn_command.png" alt=">" ></td>
+                <td class="input"><input id="command" spellcheck="false"></td>
+                <!-- <td id="error_bar">
+                    <div style="float: left"><img src="images/icn_error.png" alt="Errors"></div>
+                    <div id="error_bar_text" style="float: right">3</div>
+                </td> -->
+                <td id="message" align="right" nowrap><a href="https://wiki.mozilla.org/Labs/Bespin/Tips" target="_blank" title="Bespin Tips on the Mozilla Wiki">Click for Help</a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="collab">
+        <div id="collab_header"><div>Collaboration</div></div>
+        <div id="collab_off" style="display:none">
+            <div class="collab_text">
+                Collaboration is a beta feature. You have it turned off right now.
+                <p>Would you like to <a href="javascript:void(0);" onclick="bespin.get('settings').set('collaborate', 'on');" title="Runs: set collaborate on">turn it on?</a></p>
+                <p>After you do so, check out the <a href="https://wiki.mozilla.org/Labs/Bespin/UserGuide#Collaboration">tutorial on how to use it</a>.
+            </div>
+        </div>
+        <div id="collab_on" style="display:none">
+            <div class="collab_subheader"><div>Users editing this file:</div></div>
+            <div id="collab_list"></div>
+            <div class="collab_text">
+                Collaboration is a beta feature. Thanks for trying it out.
+                <p>Would you like to <a href="javascript:void(0);" onclick="bespin.get('settings').set('collaborate', 'off');" title="Runs: set collaborate off">turn it off?</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- debugbar HTML should move to a plugin -->
+    <div id="debugbar">
+        <div><img src="images/debug/hdr_debugging.png" width="200" height="19"></div>
+        <div id="debugbar_toolbar">
+            <span id="debugbar_break" class="debugbar_button" style="display:none"><img src="images/debug/btn_pause.png" width="62" height="42"></span>
+            <span id="debugbar_continue" class="debugbar_button"><img src="images/debug/btn_play.png" width="62" height="42"></span>
+            <span id="debugbar_stepnext" class="debugbar_button"><img src="images/debug/btn_stepovr.png" width="26" height="27"></span>
+            <span id="debugbar_stepin" class="debugbar_button"><img src="images/debug/btn_stepin.png" width="25" height="27"></span>
+            <span id="debugbar_stepout" class="debugbar_button"><img src="images/debug/btn_stepout.png" width="26" height="27"></span>
+        </div>
+        <div><img id="debugbar_status_running" src="images/debug/status_running.png" width="200" height="20" style="display:none"><img id="debugbar_status_stopped" src="images/debug/status_stopped.png" width="200" height="20"></div>
+        <div id="debugbar_position" class="debugbar_text"></div>
+        <div id="debugbar_eval">
+            <div><img src="images/debug/hdr_eval.png" width="200" height="20"></div>
+            <div id="debugbar_output" class="debugbar_text"></div>
+            <div class="footer">
+                <div><img src="images/debug/eval_splitter.png" width="200" height="11"></div>
+                <table class="commandline" cellpadding="0">
+                    <tr>
+                        <td class="prompt"><img id="promptimg" src="images/debug/icn_command.png" alt=">" height="15" width="15"></td>
+                        <td class="input"><input id="debugbar_command" spellcheck="false"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- debugbar HTML should move to a plugin -->
+
+    <div id="target_browsers">
+        <table id="target_browsers_table">
+            <tr>
+                <td>
+                    Specify Target Browsers<br><span class="comingsoon">COMING SOON!</span>
+                </td>
+                <td class="spacer">
+                    <img src="images/icn_browser_div.png" alt="">
+                </td>
+                <td class="icon">
+                    <img src="images/icn_browser_ie.png" alt="Internet Explorer">
+                </td>
+                <td>
+                    <select name="target_ie" disabled>
+                        <option></option>
+                        <option>6+</option>
+                        <option>7+</option>
+                    </select>
+                </td>
+                <td class="icon">
+                    <img src="images/icn_browser_ff.png" alt="Firefox">
+                </td>
+                <td>
+                    <select name="target_ff" disabled>
+                        <option></option>
+                        <option>2+</option>
+                        <option>3+</option>
+                    </select>
+                </td>
+                <td class="icon">
+                    <img src="images/icn_browser_safari.png" alt="Safari">
+                </td>
+                <td>
+                    <select name="target_safari" disabled>
+                        <option></option>
+                        <option>2+</option>
+                        <option>3+</option>
+                    </select>
+                </td>
+                <td class="icon">
+                    <img src="images/icn_browser_opera.png" alt="Opera">
+                </td>
+                <td>
+                    <select name="target_opera" disabled>
+                        <option></option>
+                        <option>8+</option>
+                        <option>9+</option>
+                        <option>9.5+</option>
+                    </select>
+                </td>
+                <td class="icon">
+                    <img src="images/icn_browser_w3c.png" alt="W3C">
+                </td>
+                <td>
+                    <select name="target_w3c" disabled>
+                        <option></option>
+                        <option>HTML 4</option>
+                        <option>HTML 5</option>
+                        <option>XHTML 1</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="centerpopup" style="display:none;"></div>
+    <div id="popup_insert_point"></div>
+    <div id="quickopenContainer" style="display:none">
+        <canvas id="quickopen" flowLayout="vertical" width="300" height="402">
+            <input id="project" style="display:none">
+            <input id="input" style="display:none">
+            <list id="list" layoutData="1.0"></list>
+            <label id="label" text="Enter a filename part"></label>
+        </canvas>
+    </div>
+
+    <div id="filesearchContainer" style="display:none;">
+        <input id="filesearch_input_first" style="z-index: -100">
+        <input id="filesearch_input_last" style="z-index: -100"><br>
+
+        <canvas id="filesearch" flowLayout="vertical" width="500" height="167">
+            <panel grid="f:80px:g(0.0), spacer(5px), f:0px:g(1.0); f:25px:g(0.0), spacer(5px), f:25px:g(0.0), spacer(5px)" layoutData="60px">
+                <label style="text-align: right" text="Find:" cell="1,1"></label>
+                <label style="text-align: right" text="Replace:" cell="1,3"></label>
+                <input id="filesearch_find" cell="3,1">
+                <input id="filesearch_replace" cell="3,3">
+            </panel>
+            <panel flowLayout="horizontal" layoutData="1.0">
+                <textbutton id="filesearch_bu_replace_all" text="Replace All" onclick="bespin.get('filesearch').performReplaceAll();"></textbutton>
+                <textbutton id="filesearch_bu_replace" text="Replace" onclick="bespin.get('filesearch').performReplace();"></textbutton>
+                <textbutton id="filesearch_bu_replace_and_find" text="Replace & Find" onclick="bespin.get('filesearch').performReplaceAndFind();"></textbutton>
+                <textbutton id="filesearch_bu_previous" text="Previous" onclick="bespin.get('filesearch').performPrevious();"></textbutton>
+                <textbutton id="filesearch_bu_next" text="Next" onclick="bespin.get('filesearch').performNext();"></textbutton>
+            </panel>
+        </canvas>
+    </div>
+
+    <div id="filesearch" class="popupWindow">
+        <input id="search_text" type="text">
+        <input id="replace_text" type="text">
+        <input id="bu_replace_all" type="button" value="Replace All">
+        <input id="bu_search_next" type="button" value="Next">
+        <input id="bu_search_prev" type="button" value="Previous">
+    </div>
+    <div id="overlay" style="display: none;"></div>
+</body>
+</html>
+

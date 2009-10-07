@@ -27,11 +27,11 @@ module Mcms
       return false unless Merb::Cache[:layout_sass].write("#{self.id}.sass",
                                                           self.sass)
       # in order to include the correct stylesheet path in the haml file
-      # do a string substitution looking for #layout_sass# and replacing that with
-      # /stylesheets/temp/#{layout.id}.css
+      # do a string substitution looking for #layout_sass# and replacing that 
+      # with /stylesheets/temp/#{layout.id}.css
       haml = self.haml.sub(/#layout_sass#/, "/stylesheets/temp/#{self.id}.css")
-      return false unless Merb::Cache[:layout_haml].write("#{self.id}.html.haml",
-                                                          haml)
+      return false unless Merb::Cache[:layout_haml]\
+                            .write("#{self.id}.html.haml", haml)
       true
     end
     

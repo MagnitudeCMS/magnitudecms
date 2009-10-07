@@ -1,5 +1,6 @@
 module Mcms
   class Layouts < Application
+    before :set_site_couchdb
     
     # GET /mcms/layouts
     def index
@@ -17,7 +18,10 @@ module Mcms
     end
   
     # GET /mcms/layouts/:id/edit
-    def edit
+    def edit(id)
+      Mcms::Layout.use_database CouchRest.database(@site_couchdb)
+      @layout = Mcms::Layout.get(id)
+      raise NotFound if @layout.nil?
       render
     end
   
@@ -32,8 +36,27 @@ module Mcms
     end
   
     # PUT /mcms/layouts/:id
-    def update
-      render
+    def update(id, layout)
+      only_provides :json
+    
+      Mcms::Layout.use_database CouchRest.database(@site_couchdb)
+      @layout = Mcms::Layout.get(id)
+      unless @layout.nil?
+        if @layout["_rev"].eql?(layout["rev"])
+          @layout.update_attributes_without_saving(:haml => layout["haml"], :sass => layout["sass"], :name => layout["name"])          
+          if @layout.save
+            display :success => true, :message => "Layout was successfully updated", :rev => @layout["_rev"], :id => @layout["_id"]
+          else
+            display :success => false, :error => @layout.errors
+          end
+        else
+          self.status = 412
+          display :error => "Update conflict", :reason => "This layout has been updated elsewhere, reload layout, then update again."
+        end
+      else
+        self.status = 404
+        display :error => "Layout Not Found", :reason => "The layout could not be found, refresh the layout list and try again."
+      end
     end
   
     # DELETE /mcms/layouts/:id

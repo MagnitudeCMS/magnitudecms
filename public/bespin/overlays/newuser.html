@@ -1,0 +1,96 @@
+
+<style type="text/css">
+#welcome {
+    background-image: url(images/welcome/welcome_bg.png);
+    width: 563px;
+    height: 341px;
+}
+
+#welcome ul {
+    clear: both;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    top: 38px;
+    left: 27px;
+}
+
+#welcome ul li {
+    width: 127px;
+    height: 229px;
+    float: left;
+}
+
+#welcome ul li:hover {
+    cursor: pointer;
+    cursor: hand;
+}
+
+#welcome_bespinin20secs {
+    background-image: url(images/welcome/welcome_bespinin20secs.jpg);
+}
+#welcome_commandref {
+    background-image: url(images/welcome/welcome_commandref.jpg);
+}
+#welcome_developbespin {
+    background-image: url(images/welcome/welcome_developbespin.jpg);
+}
+#welcome_userref {
+    background-image: url(images/welcome/welcome_userref.jpg);
+}
+
+#welcome_bespinin20secs:hover {
+    background-image: url(images/welcome/welcome_bespinin20secs_b.jpg);
+}
+#welcome_commandref:hover {
+    background-image: url(images/welcome/welcome_commandref_b.jpg);
+}
+#welcome_developbespin:hover {
+    background-image: url(images/welcome/welcome_developbespin_b.jpg);
+}
+#welcome_userref:hover {
+    background-image: url(images/welcome/welcome_userref_b.jpg);
+}
+
+#welcome_right {
+    position: relative;
+    float: right;
+    top: 30px;
+    right: 34px;
+}
+#welcome_close {
+    position: relative;
+    top: 5px;
+    border: none;
+}
+#welcome_dont {
+    position: relative;
+    top: 2px;
+    right: 5px;
+    font-family: Calibri, "Lucida Grande", Tahoma, Arial, sans-serif;
+    font-size: 10px;
+    color: #ff9600;
+}
+</style>
+
+<script>
+function goAndDontComeBack() {
+    bespin.get("settings").set("hidewelcomescreen", "true");
+    bespin.wizard.onClose();
+}
+</script>
+
+<div id="welcome"> 
+    <div id="welcome_right">
+        <a href="javascript:;" id="welcome_dont" onclick="goAndDontComeBack()">Don't show this again</a>
+        <a href="javascript:;" title="close" onclick="bespin.wizard.onClose()"><img id="welcome_close" src="../../../images/closer.png"></a>
+    </div
+    <ul>
+        <li id="welcome_bespinin20secs" onclick="bespin.wizard.onJump('https://wiki.mozilla.org/Labs/Bespin/UserGuide/Tutorial')" title="Jump to Bespin tutorial">
+        <li id="welcome_commandref" onclick="bespin.wizard.onJump('https://wiki.mozilla.org/Labs/Bespin/Commands')" title="Jump to Bespin command reference">
+        <li id="welcome_userref" onclick="bespin.wizard.onJump('https://wiki.mozilla.org/Labs/Bespin/UserGuide')" title="Jump to Bespin Userguide">
+        <li id="welcome_developbespin" onclick="bespin.wizard.onJump('https://wiki.mozilla.org/Labs/Bespin#Source_Code')" title="Jump to Bespin developer info">
+    </ul>
+</div>

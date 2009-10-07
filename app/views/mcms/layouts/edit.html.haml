@@ -1,5 +1,29 @@
-%h1 Layouts controller, edit action
+<!doctype html>
 
-%p
-  Edit this file in
-  %tt app/views/layouts/edit.html.haml
+%html
+  %head
+    %title= "Editing Layout - #{@layout.name} | MagnitudeCMS"
+    %link{ :href => "/stylesheets/layout_edit.css", :rel => "stylesheet", :type => "text/css" }
+
+    :javascript
+      var djConfig = {parseOnLoad:false,isDebug:false,debugAtAllCosts:false};
+
+    %script{ :type => "text/javascript", :src => "/bespin/js/dojo/dojo.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/th.compressed.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/bespin/editor/embed.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/ext-core.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/layout_edit.js" }
+    
+  %body
+    #top
+      %form#_form{ :method => "post", :action => "/mcms/layouts/#{@layout.id}" }
+        %input#rev{ :type => "hidden", :name => "layout[rev]", :value => @layout.rev }
+        %input{ :type => "hidden", :name => "_method", :value => "PUT" }
+        %input{ :type => "submit", :value => "save" }
+        %a#_haml{ :href => "#haml" } haml
+        %a#_sass{ :href => "#sass" } sass
+        %textarea#haml{ :name => "layout[haml]", :style => "display: none;" }= @layout.haml
+        %textarea#sass{ :name => "layout[sass]", :style => "display: none;" }= @layout.sass
+        Name:
+        %input{ :type => "text", :name => "layout[name]", :value => @layout.name }
+    #editor<

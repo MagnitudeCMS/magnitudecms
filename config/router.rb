@@ -21,6 +21,7 @@ Merb::Router.prepare do
   authenticate do
     resources :"mcms/sites"
     resources :"mcms/content_items"
+    resources :"mcms/layouts"
     match("/mcms/sites/new/existing")\
       .to(:controller => "mcms/sites",
           :action     => :new_existing,
