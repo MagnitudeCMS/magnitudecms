@@ -5,7 +5,9 @@ end
 
 # comment this out if you are running merb behind a load balancer
 # that serves static files
-use Merb::Rack::Static, Merb.dir_for(:public)
+if Merb::Config[:merb_serve_static]
+  use Merb::Rack::Static, Merb.dir_for(:public)
+end
 
 # this is our main merb application
 merb = Merb::Rack::Application.new
