@@ -45,7 +45,11 @@ module Mcms
         if @layout["_rev"].eql?(layout["rev"])
           @layout.update_attributes_without_saving(:haml => layout["haml"], :sass => layout["sass"], :name => layout["name"])          
           if @layout.save
-            display :success => true, :message => "Layout was successfully updated", :rev => @layout["_rev"], :id => @layout["_id"]
+            if @layout.exported_to_disk?
+              display :success => true, :message => "Layout was successfully updated", :rev => @layout["_rev"], :id => @layout["_id"]
+            else
+              display :success => false, :message => "The Layout was saved, however there was an issue exporting it to disk", :rev => @layout["_rev"], :id => @layout["_id"]
+            end
           else
             display :success => false, :error => @layout.errors
           end

@@ -15,15 +15,6 @@ module Mcms
   class Page < Application
   
     def show(_content_id, _layout_id, _site_couchdb)
-      # ensure there is a layout_id and have the layout export itself to disk
-      # Not sure of an effecient way to get info out of couch and available to
-      # merb's render method, so am just going to adapt to the way merb works
-      # which is looking for files in certain places on the disk
-      raise NotFound if _layout_id.nil?
-      Mcms::Layout.use_database CouchRest.database(_site_couchdb)
-      layout = Mcms::Layout.get(_layout_id)
-      raise NotFound if layout.nil?
-      raise NotFound unless layout.exported_to_disk?
       # even though this method ought to be invoked from the router, there is 
       # the chance it might be invoked directly so set the db again and make
       # sure a content_item doc is retrieved before proceeding

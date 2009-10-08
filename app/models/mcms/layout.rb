@@ -20,12 +20,16 @@ module Mcms
     property :sass
     
     # merb-cache is the conduit for getting the info out of couchdb
-    # and onto the filesystem. sass files are stored in :layout_sass store
-    # in app/stylesheets/temp/ and haml files are stored in app/views/temp 
-    # these dirs can then be added to .gitignorebme 
+    # and onto the filesystem.
+    # haml files are stored in :layout_haml store in app/views/temp/
+    # attachements are stored in :layout_attachments store in public/temp/
+    # these dirs can then be added to .gitignorebme
+    # sass is exported staright out to css
     def exported_to_disk?
-      return false unless Merb::Cache[:layout_sass].write("#{self.id}.sass",
-                                                          self.sass)
+      # render sass and write to disk
+      Sass::Plugin.update_stylesheet2(self.sass,
+                                      self.id,
+                                      Merb.root + "/public/stylesheets/temp/")
       # in order to include the correct stylesheet path in the haml file
       # do a string substitution looking for #layout_sass# and replacing that 
       # with /stylesheets/temp/#{layout.id}.css
