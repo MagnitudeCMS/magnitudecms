@@ -1,6 +1,7 @@
+- require_css :admin_bar
 - if @valid_admin
-  #admin
-    %a{ :href => "javascript:var ew=window.open('#{absolute_url(:"edit_mcms/content_item", @content_item.id)}','editor','height=500,width=800,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,status=no');ew.focus();" } edit this page
+  #admin_bar
+    %a{ :href => "javascript:var ew=window.open('#{absolute_url(:"edit_mcms/content_item", @content_item.id)}','mcms_editor','resizable=yes,scrollbars=1,toolbar=0,statusbar=0');ew.focus();" } edit this page
     %br
-    %a{ :href => "javascript:var ew=window.open('#{absolute_url(:"new_mcms/content_item")}','editor','height=500,width=800,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,status=no');ew.focus();" } new page
+    %a{ :href => "javascript:var ew=window.open('#{absolute_url(:"new_mcms/content_item")}','mcms_editor','resizable=yes,scrollbars=1,toolbar=0,statusbar=0');ew.focus();" } new page
   
