@@ -1,4 +1,3 @@
-- require_css :admin_bar
 - if @valid_admin
   #admin_bar
     %a{ :href => "javascript:var ew=window.open('#{absolute_url(:"edit_mcms/content_item", @content_item.id)}','mcms_editor','resizable=yes,scrollbars=1,toolbar=0,statusbar=0');ew.focus();" } edit this page
