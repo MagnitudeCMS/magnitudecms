@@ -1,5 +1,50 @@
-%h1 ContentItems controller, edit action
+<!doctype html>
+%html
+  %head
+    %title= "Editing - #{@content_item.url} | MagnitudeCMS"
+    %link{ :href => "/stylesheets/editor.css", :rel => "stylesheet", :type => "text/css" }
 
-%p
-  Edit this file in
-  %tt app/views/content_items/edit.html.haml
+    :javascript
+      var djConfig = {parseOnLoad:false,isDebug:false,debugAtAllCosts:false};
+
+    %script{ :type => "text/javascript", :src => "/bespin/js/dojo/dojo.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/th.compressed.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/bespin/editor/embed.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/ext-core.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/tabs.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/editor.js" }
+    
+  %body
+    %form#_form{ :method => "post", :action => "/mcms/content_items/#{@content_item.id}" }
+      %input#rev{ :type => "hidden", :name => "content_item[rev]", :value => @content_item.rev }
+      %input#_method{ :type => "hidden", :name => "_method", :value => "PUT" }
+      %input#btn{ :type => "submit", :value => "save" }
+      %a{ :href => url(:"mcms/content_items"), :title => "View all content items for site", :style => "color:#f0f;" } All Content Items
+      .tab-buttons-panel
+        %ul
+          %li#tab1.tab-show
+            %a{ :href => "#tab1", :title => "Edit Page details"} Details
+          %li#tab2
+            %a{ :href => "#tab2", :title => "Navigation"} Navigation
+          %li#tab3
+            %a{ :href => "#tab3", :title => "Navigation"} Content
+      #content1.tab-content.tab-content-show
+        Title:
+        %input{ :type => "text", :name => "content_item[title]", :value => @content_item.title }
+        %br
+        URL:
+        %input{ :type => "text", :name => "content_item[url]", :value => @content_item.url }
+        %br
+        Meta Keywords:
+        %input{ :type => "text", :name => "content_item[meta][keywords]", :value => @content_item.meta["keywords"] }
+        %br
+        Meta Description:
+        %input{ :type => "text", :name => "content_item[meta][description]", :value => @content_item.meta["description"] }
+      #content2.tab-content
+        navigation
+      #content3.tab-content.editors
+        - @content_item.get_layout(@site_couchdb).pieces.each do |piece|
+          %a{ :id => "_#{piece}", :href => "#tab3-#{piece}" }= piece
+          &nbsp;-&nbsp;
+          %textarea{ :id => piece, :name => "content_item[pieces][#{piece}]", :style => "display: none;" }= @content_item.pieces[piece]
+        #editor<

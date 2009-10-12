@@ -1,9 +1,12 @@
 module Mcms
   class Layouts < Application
     before :set_site_couchdb
+    before :ensure_site_admin
     
     # GET /mcms/layouts
     def index
+      Mcms::Layout.use_database CouchRest.database(@site_couchdb)
+      @layouts = Mcms::Layout.all
       render
     end
   
@@ -14,6 +17,9 @@ module Mcms
   
     # GET /mcms/layouts/new
     def new
+      Mcms::Layout.use_database CouchRest.database(@site_couchdb)
+      @layout = Mcms::Layout.get(id)
+      raise NotFound if @layout.nil?
       render
     end
   
@@ -43,7 +49,10 @@ module Mcms
       @layout = Mcms::Layout.get(id)
       unless @layout.nil?
         if @layout["_rev"].eql?(layout["rev"])
-          @layout.update_attributes_without_saving(:haml => layout["haml"], :sass => layout["sass"], :name => layout["name"])          
+          @layout.update_attributes_without_saving(:haml => layout["haml"],
+                                                   :sass => layout["sass"],
+                                                   :name => layout["name"],
+                                                   :pieces => layout["pieces"].split(","))
           if @layout.save
             if @layout.exported_to_disk?
               display :success => true, :message => "Layout was successfully updated", :rev => @layout["_rev"], :id => @layout["_id"]
@@ -51,6 +60,7 @@ module Mcms
               display :success => false, :message => "The Layout was saved, however there was an issue exporting it to disk", :rev => @layout["_rev"], :id => @layout["_id"]
             end
           else
+            self.status = 500
             display :success => false, :error => @layout.errors
           end
         else

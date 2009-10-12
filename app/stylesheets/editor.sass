@@ -1,0 +1,29 @@
+@import compass/utilities/lists/horizontal_list.sass
+*:focus
+  :outline 0
+#editor
+  :border 10px solid #ddd
+  :cursor text
+  :height 50px
+  :margin 10px 0 0 0
+  :padding 0
+  :-moz-border-radius 10px
+  :-webkit-border-radius 10px
+  
+.tab-buttons-panel ul
+  +horizontal-list
+  .tab-show a
+    :text-decoration underline
+.tab-content
+  :display none
+  :margin-top 10px
+.tab-content-show
+  :display block
+
+a
+  :text-decoration none  
+  &.active
+    :text-decoration underline
+    
+input[type=text]
+  :width 600px

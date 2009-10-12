@@ -1,7 +1,7 @@
 class Application < Merb::Controller
   
   def ensure_site_admin
-    raise Unauthorized unless Site.is_user_site_admin?(session.user.email,request.server_name)
+    raise Unauthorized unless site_admin?
   end
   
   def set_site_couchdb
@@ -12,4 +12,7 @@ class Application < Merb::Controller
     @mcms_couchdb = Merb::Config[:couch_host] + "/" + Merb::Config[:couch_db]
   end
   
+  def site_admin?
+    Mcms::Site.is_user_site_admin?(session.user.id,request.server_name)
+  end
 end

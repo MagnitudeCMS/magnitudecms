@@ -18,7 +18,7 @@ module Mcms
       # even though this method ought to be invoked from the router, there is 
       # the chance it might be invoked directly so set the db again and make
       # sure a content_item doc is retrieved before proceeding
-      ContentItem.use_database CouchRest.database(_site_couchdb)
+      Mcms::ContentItem.use_database CouchRest.database(_site_couchdb)
       @content_item = ContentItem.get(_content_id)
       raise NotFound if @content_item.nil?
       
@@ -27,6 +27,7 @@ module Mcms
       # mcms::layout written out from couchdb to fs on each request, will figure
       # out a good way to cache. obviously front end caching, etags etc could be
       # used, the flexibility that is HTTP :)
+      @valid_admin = site_admin?
       render(nil, {:format => :html, 
                    :template => "temp/#{_layout_id}",
                    :layout => false})

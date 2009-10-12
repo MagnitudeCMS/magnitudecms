@@ -18,6 +18,15 @@ module Mcms
     property :name
     property :haml
     property :sass
+    property :pieces, :default => []
+    
+    timestamps!
+    
+    # Validation
+    validates_present :name
+    validates_present :haml
+    validates_present :sass
+    validates_present :pieces
     
     # merb-cache is the conduit for getting the info out of couchdb
     # and onto the filesystem.

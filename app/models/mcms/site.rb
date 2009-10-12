@@ -85,7 +85,7 @@ MAP
     end
     
     def self.is_user_site_admin?(user,domain)
-      s = self.by_admin_and_domain :key => ["#{user}","#{domain}"], :reduce => true
+      s = self.by_admin_of_domain :key => ["#{user}","#{domain}"], :raw => true
       return true unless s["rows"].empty?
       return false
     end

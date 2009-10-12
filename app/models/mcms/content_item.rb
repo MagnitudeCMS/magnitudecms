@@ -8,15 +8,10 @@ module Mcms
     # Official Schema
     property :url # full URI minus the protocol & port
     property :title
-    property :meta, :default => {}  # looks better in Futon..
-    # TODO validate parts.key?("main")
-    # pieces 
-    property :pieces, :default => {} # multiple pieces of content are available, 
-                                     # {}"main" is the mandatory one
-    # pieces => {"main" =>                 # name of the piece
-    #           "Some content is in here." # the actual content to blat out
-    #          }
+    property :meta, :default => {}  # looks better in Futon.
+    property :pieces, :default => {} # multiple pieces of content are available,
     property :has_layout, :cast_as => :boolean
+    property :layout_id
   
     view_by :url, :map => <<MAP
 function(doc) {
@@ -32,6 +27,7 @@ MAP
     validates_present :url
     validates_present :title
     validates_present :pieces
+    validates_present :meta
   
     def to_html
       self.piece_to_html("main")
@@ -39,6 +35,16 @@ MAP
     
     def piece_to_html(piece)
       Maruku.new(self["pieces"][piece]).to_html
+    end
+    
+    def get_layout(couchdb)
+      Mcms::Layout.use_database CouchRest.database(couchdb)
+      if self.has_layout?
+        Mcms::Layout.get(self.layout_id)
+      else
+        Mcms::SiteConfig.use_database CouchRest.database(couchdb)
+        Mcms::Layout.get(Mcms::SiteConfig.get_default_layout_id)        
+      end
     end
     
   end

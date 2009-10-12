@@ -1,5 +1,19 @@
-%h1 Layouts controller, index action
-
-%p
-  Edit this file in
-  %tt app/views/layouts/index.html.haml
+#main-content
+  %h1 Site Layouts
+  %ul
+    %li= link_to("Add", url(:"new_mcms/layout"))
+  - unless @layouts.empty?
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Action
+      %tbody
+        - @layouts.each do |layout|
+          %tr
+            %td= layout.name
+            %td
+              %a.edit{ :href => url(:"edit_mcms/layout", :id => layout.id) } Edit
+  - else
+    %p no layouts added to site yet
+  

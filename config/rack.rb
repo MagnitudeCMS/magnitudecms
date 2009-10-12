@@ -19,5 +19,5 @@ hapong = lambda do |env|
     [404, {}, "No PONG! here, move along"]
   end
 end
- 
+
 run Rack::Cascade.new([hapong, merb])

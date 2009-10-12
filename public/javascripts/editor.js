@@ -3,7 +3,7 @@ var _active;
 
 function init(){
   _editor = new bespin.editor.Component("editor", {
-    language: "ruby"
+    language: "html"
     ,loadfromdiv: true
     ,set: {
       strictlines: "on"
@@ -12,20 +12,23 @@ function init(){
   
   fitEditor();
   Ext.EventManager.addListener(window, "resize", fitEditor);
-  Ext.fly("_haml").on("click" , function() {setEditorContent("haml");});
-  Ext.fly("_sass").on("click" , function() {setEditorContent("sass");});
+
+  Ext.select('.editors').on('click', function(e, t) {
+       Ext.fly(t).radioClass('active');
+       setEditorContent(Ext.fly(t).getAttribute("id").substring(1));
+   }, null, {delegate: 'a'});
+   
   Ext.fly("_form").on("submit", function(e,t) {
     e.stopEvent();
     var btn = Ext.getDom("btn");
     btn.disabled = true;
     btn.value = "saving...";
-    saveLayout(btn);
+    save(btn);
   });
-  setEditorContent("haml");
 }
 
 function fitEditor() {
-  Ext.fly("editor").setHeight(window.innerHeight-60, true);
+  Ext.fly("editor").setHeight(window.innerHeight-100, true);
 }
 function setEditorContent(what) {
   setFieldContent(_active);
@@ -37,18 +40,24 @@ function setFieldContent(what) {
     Ext.fly(what).update(_editor.getContent());
   }
 }
-function saveLayout(btn) {
+function save(btn) {
   setFieldContent(_active);
   Ext.Ajax.request({
     url: Ext.fly("_form").getAttribute("action")
     ,form: "_form"
-    ,method: "PUT"
+    ,method: Ext.fly("_method").getValue()
     ,success: function(response, opts) {
       var obj = Ext.decode(response.responseText);
-      console.dir(obj);
-      Ext.getDom("rev").value = obj.rev;
       btn.disabled = false;
       btn.value = "save";
+      switch(obj.action) {
+        case "created":
+          window.location = obj.url
+          break;
+        case "updated":
+          Ext.getDom("rev").value = obj.rev;
+          break;
+      }
     }
     ,failure: function(response, opts) {
       console.log("server-side failure with status code " + response.status);

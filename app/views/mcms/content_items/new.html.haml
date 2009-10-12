@@ -1,5 +1,48 @@
-%h1 ContentItems controller, new action
+<!doctype html>
+%html
+  %head
+    %title= "New Content Item | MagnitudeCMS"
+    %link{ :href => "/stylesheets/editor.css", :rel => "stylesheet", :type => "text/css" }
 
-%p
-  Edit this file in
-  %tt app/views/content_items/new.html.haml
+    :javascript
+      var djConfig = {parseOnLoad:false,isDebug:false,debugAtAllCosts:false};
+
+    %script{ :type => "text/javascript", :src => "/bespin/js/dojo/dojo.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/th.compressed.js" }
+    %script{ :type => "text/javascript", :src => "/bespin/js/bespin/editor/embed.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/ext-core.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/tabs.js" }
+    %script{ :type => "text/javascript", :src => "/javascripts/editor.js" }
+    
+  %body
+    %form#_form{ :method => "post", :action => "/mcms/content_items" }
+      %input#_method{ :type => "hidden", :name => "nothing", :value => "POST" }
+      %input#btn{ :type => "submit", :value => "save" }
+      .tab-buttons-panel
+        %ul
+          %li#tab1.tab-show
+            %a{ :href => "#tab1", :title => "Edit Page details"} Details
+          %li#tab2
+            %a{ :href => "#tab2", :title => "Navigation"} Navigation
+          %li#tab3
+            %a{ :href => "#tab3", :title => "Navigation"} Content
+      #content1.tab-content.tab-content-show
+        Title:
+        %input{ :type => "text", :name => "content_item[title]", :value => "" }
+        %br
+        URL:
+        %input{ :type => "text", :name => "content_item[url]", :value => "" }
+        %br
+        Meta Keywords:
+        %input{ :type => "text", :name => "content_item[meta][keywords]", :value => "" }
+        %br
+        Meta Description:
+        %input{ :type => "text", :name => "content_item[meta][description]", :value => "" }
+      #content2.tab-content
+        navigation
+      #content3.tab-content.editors
+        - @layout.pieces.each do |piece|
+          %a{ :id => "_#{piece}", :href => "#tab3-#{piece}" }= piece
+          &nbsp;-&nbsp;
+          %textarea{ :id => piece, :name => "content_item[pieces][#{piece}]", :style => "display: none;" }
+        #editor<

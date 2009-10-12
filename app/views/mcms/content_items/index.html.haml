@@ -1,3 +1,4 @@
+- require_js :content_items_index
 #main-content
   %h1 Site Content
   %ul
@@ -14,7 +15,9 @@
           %tr
             %td= item.title
             %td= item.url
-            %td= link_to("edit", url(:"edit_mcms/content_item", :id => item.id))
+            %td
+              %a.edit{ :href => url(:"edit_mcms/content_item", :id => item.id), :title => "edit" } edit
+              %a.delete{ :href => url(:"destroy_mcms/content_item", :id => item.id, :rev => item.rev), :title => "delete" } delete
   - else
     %p no content added to site yet
   

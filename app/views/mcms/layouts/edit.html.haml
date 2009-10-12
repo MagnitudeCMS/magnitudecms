@@ -1,9 +1,8 @@
 <!doctype html>
-
 %html
   %head
     %title= "Editing Layout - #{@layout.name} | MagnitudeCMS"
-    %link{ :href => "/stylesheets/layout_edit.css", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/stylesheets/editor.css", :rel => "stylesheet", :type => "text/css" }
 
     :javascript
       var djConfig = {parseOnLoad:false,isDebug:false,debugAtAllCosts:false};
@@ -26,4 +25,6 @@
         %textarea#sass{ :name => "layout[sass]", :style => "display: none;" }= @layout.sass
         Name:
         %input{ :type => "text", :name => "layout[name]", :value => @layout.name }
+        pieces:
+        %input{ :type => "text", :name => "layout[pieces]", :value => @layout.pieces.join(",") }
     #editor<

@@ -33,6 +33,12 @@ Merb::Router.prepare do
           :method     => :post)\
       .name(:"add_domain_admin_mcms/site")
       
+    match("/mcms/content_items/:id/:rev")\
+      .to(:controller => "mcms/content_items",
+          :action     => :destroy,
+          :method     => :delete)\
+      .name(:"destroy_mcms/content_item")
+      
     match("/mcms/backend")\
       .to(:controller => "mcms/backend",
           :action     => :index,
