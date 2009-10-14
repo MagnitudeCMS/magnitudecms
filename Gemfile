@@ -35,11 +35,3 @@ gem "haml", "2.2.0"
 gem "merb-haml", merb_gems_version
 gem "chriseppstein-compass", "0.8.16", :require_as => "compass"
 gem "chriseppstein-compass-960-plugin", "0.9.8", :require_as => "ninesixty"
- 
-# testing
-gem "auxesis-webrat", "0.4.1", :require_as => "webrat"
-gem "cucumber", "0.3.11"
-gem "chronic", "0.2.3"
-gem "ParseTree", "3.0.3", :require_as => 'parse_tree'
-gem "rspec", "1.2.8", :require_as => 'spec'
-gem "david-merb_cucumber", :require_as => "merb_cucumber"
