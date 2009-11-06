@@ -52,6 +52,8 @@ Thanks / Kudos
 <dl>
 <dt>Jacques Crocker</dt>
 <dd>Updating Merb to 1.1 and sorting out the bundler</dd>
+<dt>Marco Vignolo - info@marco-vignolo.com.ar</dt>
+<dd>Sweet logo</dd>
 </dl>
 
 Copyright / License
