@@ -43,9 +43,9 @@ module Mcms
   
       if @site.save
         Mcms::ContentItem.use_database CouchRest.database!(@site.couchdb)
-        Mcms::ContentItem.create(:title => "Home", :url => "#{@site.default_domain}/", :pieces => {:main => "home page"})
+        Mcms::ContentItem.create(:title => "Home", :url => "#{@site.default_domain}/", :pieces => {:main => "home page"}, :meta => {:description => "", :keywords => ""} )
         Mcms::Layout.use_database CouchRest.database(@site.couchdb)
-        layout = Mcms::Layout.create(:name => "default", :haml => "!!! XML\n!!!\n%html{ html_attrs('en-AU') }\n  %head\n    %meta{ :content => \"text/html; charset=utf-8\", :\"http-equiv\" => \"content-type\" }\n    %title= @content_item.title\n    %link{ :href => \"#layout_sass#\", :rel => \"stylesheet\", :type => \"text/css\"}\n  %body\n    #content= @content_item.to_html\n", :sass => "#content\n  :color #f0f\n")
+        layout = Mcms::Layout.create(:name => "default", :pieces => ["main"], :haml => "!!! XML\n!!!\n%html{ html_attrs('en-AU') }\n  %head\n    %meta{ :content => \"text/html; charset=utf-8\", :\"http-equiv\" => \"content-type\" }\n    %title= @content_item.title\n    %link{ :href => \"#layout_sass#\", :rel => \"stylesheet\", :type => \"text/css\"}\n  %body\n    #content= @content_item.to_html\n", :sass => "#content\n  :color #f0f\n")
         Mcms::SiteConfig.use_database CouchRest.database(@site.couchdb)
         Mcms::SiteConfig.create(:"_id" => "thesiteconfig", :layouts => [layout.id])
         redirect("/")
