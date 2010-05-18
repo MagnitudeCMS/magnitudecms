@@ -1,4 +1,4 @@
-bundle_path "gems"
+source :gemcutter
 source "http://gems.github.com"
 
 merb_gems_version = "1.1"
@@ -25,13 +25,13 @@ gem "merb-gen", merb_gems_version
 gem "thin", "1.2.2"
  
 # orm
-gem "json_pure", "1.1.9", :require_as => "json"
-gem "mattetti-couchrest", "0.34", :require_as => "couchrest"
+gem "json_pure", "1.1.9", :require => "json"
+gem "mattetti-couchrest", "0.34", :require => "couchrest"
  
 # view
 gem "merb_viewfu", "0.3.4"
 gem "maruku", "0.6.0"
 gem "haml", "2.2.0"
 gem "merb-haml", merb_gems_version
-gem "chriseppstein-compass", "0.8.16", :require_as => "compass"
-gem "chriseppstein-compass-960-plugin", "0.9.8", :require_as => "ninesixty"
+gem "chriseppstein-compass", "0.8.16", :require => "compass"
+gem "chriseppstein-compass-960-plugin", "0.9.8", :require => "ninesixty"

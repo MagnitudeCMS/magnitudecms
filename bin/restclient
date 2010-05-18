@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require File.join(File.dirname(__FILE__), "../gems/environment")
-load File.join(File.dirname(__FILE__), "../gems/gems/rest-client-1.0.3/bin/restclient")
