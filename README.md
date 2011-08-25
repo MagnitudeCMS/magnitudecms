@@ -1,3 +1,24 @@
+<blockquote>
+<p>this code is horribly out dated / not finished...</p>
+
+<p>it works for me as I haven't touched anything since I set it up for a multidomain site <em>(I'm not going to reveal, if you break it then I have to fix it...)</em></p>
+
+<p>so how do we get it running??</p>
+
+<p>I think the best solution would be to use the same versions as what I'm running</p>
+<ul>
+<li>rvm, 4.0.35(1)-release</li>
+<li>ruby, 1.8.7p249</li>
+<li>gem, 1.3.6</li>
+<li>bundler 0.9.25</li>
+</ul>
+
+<p>if you can setup a new user with all these, mcms should work as all the required gems are stored in the repo.</p>
+
+<p>have fun ;)</p>
+</blockquote>
+
+
 MagnitudeCMS
 ============
 
