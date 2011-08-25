@@ -7,7 +7,7 @@
 
 <p>I think the best solution would be to use the same versions as what I'm running</p>
 <ul>
-<li>rvm, 4.0.35(1)-release</li>
+<li>rvm, 0.1.24</li>
 <li>ruby, 1.8.7p249</li>
 <li>gem, 1.3.6</li>
 <li>bundler 0.9.25</li>
